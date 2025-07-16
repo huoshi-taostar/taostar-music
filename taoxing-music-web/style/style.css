@@ -15,6 +15,8 @@
             overflow-x: hidden;
             position: relative;
             cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto;
+            color: #1bf5f5af;
+            text-shadow: 0 0 5px rgba(0, 255, 217, 0.634);
         }
 
         a, button, input, select, textarea, .music-button, label, #audio-controls button {
@@ -110,7 +112,8 @@
             font-size: 1.3rem;
             max-width: 700px;
             margin-bottom: 40px;
-            color: #b0e0ff;
+            color: #1bf5f5af;
+            text-shadow: 0 0 10px rgba(0, 255, 217, 0.634);
             line-height: 1.7;
         }
         
