@@ -1,8 +1,19 @@
+        :root {
+            --primary: #00e6cc;
+            --primary-light: rgba(0, 230, 204, 0.7);
+            --secondary: #00d2ed;
+            --dark-bg: #0a0f25;
+            --card-bg: rgba(10, 15, 35, 0.7);
+            --text-light: #b0e0ff;
+            --text-accent: #1bf5f5;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
         }
         
         body {
@@ -15,8 +26,9 @@
             overflow-x: hidden;
             position: relative;
             cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto;
-            color: #1bf5f5af;
+            color: var(--text-accent);
             text-shadow: 0 0 5px rgba(0, 255, 217, 0.634);
+            min-height: 100vh;
         }
 
         a, button, input, select, textarea, .music-button, label, #audio-controls button {
@@ -40,9 +52,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 10%;
+            padding: 20px 5%;
             position: relative;
-            z-index: 10;
+            z-index: 100;
+            background: rgba(5, 10, 25, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 230, 204, 0.2);
         }
         
         .logo {
@@ -51,8 +66,9 @@
             gap: 12px;
             font-size: 1.8rem;
             font-weight: 700;
-            color: #00e6cc;
+            color: var(--primary);
             text-shadow: 0 0 10px rgba(0, 230, 204, 0.7);
+            z-index: 101;
         }
         
         .logo i {
@@ -61,23 +77,119 @@
         
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 25px;
+            transition: var(--transition);
         }
         
         .nav-links a {
+            display: flex;
+            align-items: center;
             text-decoration: none;
-            color: #b0e0ff;
+            color: var(--text-light);
             font-size: 1.1rem;
             font-weight: 500;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 30px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 230, 204, 0.2);
         }
         
         .nav-links a:hover {
-            background: rgba(0, 230, 204, 0.15);
-            color: #00e6cc;
-            text-shadow: 0 0 8px rgba(0, 230, 204, 0.8);
+            background: rgba(0, 230, 204, 0.2);
+            color: var(--primary);
+            text-shadow: 0 0 15px rgba(0, 230, 204, 0.8);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 230, 204, 0.3);
+        }
+        
+        .nav-links a i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        /* 汉堡菜单 */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 5px;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        
+        /* 移动设备菜单 */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background: rgba(10, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 100px 30px 30px;
+            transition: var(--transition);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            border-right: 2px solid var(--primary);
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu a {
+            display: flex;
+            align-items: center;
+            padding: 20px 25px;
+            margin: 10px 0;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.3rem;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+        
+        .mobile-menu a:hover {
+            background: rgba(0, 230, 204, 0.2);
+            color: var(--primary);
+            transform: translateX(10px);
+        }
+        
+        .mobile-menu a i {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
         /* 主内容区 */
@@ -99,22 +211,25 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 20px;
-            background: linear-gradient(90deg, #00e6cb93, #08dac5bc);
+            background: linear-gradient(90deg, #00e6cb, #08dac5);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 230, 204, 0.4);
+            text-shadow: 0 0 20px rgba(0, 230, 204, 0.4);
             letter-spacing: 1px;
+            font-weight: 700;
+            line-height: 1.2;
         }
         
         .hero p {
             font-size: 1.3rem;
             max-width: 700px;
             margin-bottom: 40px;
-            color: #1bf5f5af;
+            color: var(--text-accent);
             text-shadow: 0 0 10px rgba(0, 255, 217, 0.634);
             line-height: 1.7;
+            font-weight: 300;
         }
         
         /* 下载按钮 */
@@ -124,21 +239,24 @@
             font-size: 1.3rem;
             font-weight: 600;
             background: rgba(0, 0, 20, 0.7);
-            color: #00e6cc;
-            border: 2px solid #00e6cc;
+            color: var(--primary);
+            border: 2px solid var(--primary);
             border-radius: 50px;
             cursor: pointer;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: var(--transition);
             box-shadow: 0 0 20px rgba(0, 230, 204, 0.3);
             letter-spacing: 1px;
             margin-top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
         
         .download-btn:hover {
             background: rgba(0, 230, 204, 0.15);
-            box-shadow: 0 0 30px rgba(0, 230, 204, 0.6);
-            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(0, 230, 204, 0.6);
+            transform: translateY(-5px);
         }
         
         .download-btn::before {
@@ -173,21 +291,25 @@
         }
         
         .feature-card {
-            background: rgba(10, 15, 35, 0.6);
+            background: var(--card-bg);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 230, 204, 0.3);
             border-radius: 20px;
-            padding: 30px;
-            transition: all 0.3s ease;
+            padding: 40px 30px;
+            transition: var(--transition);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 230, 204, 0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 230, 204, 0.3);
             border-color: rgba(0, 230, 204, 0.6);
         }
         
@@ -198,25 +320,33 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #00e6cbc5, #03e9caa9);
+            background: linear-gradient(90deg, #00e6cb, #03e9ca);
             z-index: 2;
         }
         
         .feature-card i {
-            font-size: 3rem;
-            color: #00d2edce;
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover i {
+            transform: scale(1.2);
+            color: var(--primary);
         }
         
         .feature-card h3 {
             font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #00e6cc;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-weight: 600;
         }
         
         .feature-card p {
-            color: #b0e0ff;
+            color: var(--text-light);
             line-height: 1.6;
+            font-size: 1.1rem;
         }
         
         /* 展示图区域 */
@@ -226,34 +356,37 @@
         }
         
         .showcase h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 60px;
-            color: #00e6cc;
+            color: var(--primary);
             position: relative;
             display: inline-block;
+            font-weight: 700;
         }
         
         .showcase h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, #00d7e6c5, #0199c7c4);
+            height: 4px;
+            background: linear-gradient(90deg, #00d7e6, #0199c7);
+            border-radius: 2px;
         }
         
         .screenshots {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 40px;
             padding: 20px;
         }
         
         .screenshot {
-            width: 680px;
+            width: 100%;
+            max-width: 680px;
             height: 420px;
             background: linear-gradient(145deg, #00000064, #14141483);
             border-radius: 20px;
@@ -261,12 +394,12 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             position: relative;
             border: 1px solid rgba(5, 234, 219, 0.548);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
         
         .screenshot:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(1.03);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
         
         .screenshot-img {
@@ -274,45 +407,76 @@
             height: 100%;
             background-size: cover;
             background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
         
-        .screenshot:nth-child(1) .screenshot-img {
-            background: linear-gradient(45deg, #00000048, #0a2a4a57);
+        .screenshot-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
         
-        .screenshot:nth-child(2) .screenshot-img {
-            background: linear-gradient(45deg, #0a4a2a3d, #4a0a3a2e);
-        }
-        
-        .screenshot:nth-child(3) .screenshot-img {
-            background: linear-gradient(45deg, #4a2a0a3c, #0a3a4a20);
+        .screenshot:hover .screenshot-img img {
+            transform: scale(1.05);
         }
         
         /* 底部区域 */
         footer {
             text-align: center;
-            padding: 30px 20px;
-            color: #b0e0ff;
+            padding: 40px 20px;
+            color: var(--text-light);
             border-top: 1px solid rgba(0, 230, 204, 0.2);
             background: rgba(5, 10, 25, 0.5);
             backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 10;
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .screenshots {
-                flex-direction: column;
-                align-items: center;
-            }
+        footer p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        footer a {
+            color: #06f7c3;
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        footer a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #06f7c3;
+            transition: var(--transition);
+        }
+        
+        footer a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 230, 204, 0.7);
+        }
+        
+        footer a:hover::after {
+            width: 100%;
+        }
+        
+        .footer-logo {
+            margin: 20px auto;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .footer-logo svg {
+            width: 100%;
+            height: 100%;
         }
         
         /* 动画效果 */
@@ -323,4 +487,97 @@
         
         .floating {
             animation: float 6s ease-in-out infinite;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .screenshot {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 5%;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero {
+                padding: 40px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .download-btn {
+                padding: 15px 35px;
+                font-size: 1.1rem;
+            }
+            
+            .screenshot {
+                height: 280px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .screenshot {
+                height: 220px;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .showcase h2 {
+                font-size: 2.2rem;
+            }
+        }
+        
+        /* 汉堡菜单动画 */
+        .hamburger.toggle .line1 {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.toggle .line2 {
+            opacity: 0;
+        }
+        
+        .hamburger.toggle .line3 {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        /* 滚动动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
         }
