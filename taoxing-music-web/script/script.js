@@ -77,3 +77,32 @@
         huojian01Btn.click(); // 触摸结束时触发点击事件
       }
     });
+
+
+
+
+
+    // 下载链接（你可以改成你自己的链接）
+    const downloadLink = "https://example.com/file.zip";
+
+    // 检测是否是手机
+    function isMobile() {
+      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    // 添加点击事件
+    document.querySelector(".download").addEventListener("click", function () {
+      if (isMobile()) {
+        alert("手机端不支持下载！");
+        return;
+      }
+
+      // 创建一个隐藏的 a 标签进行下载
+      const a = document.createElement("a");
+      a.href = downloadLink;
+      a.download = ""; // 可以自定义文件名
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  
