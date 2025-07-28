@@ -83,7 +83,7 @@
 
 
     // 下载链接（你可以改成你自己的链接）
-    const downloadLink = "https://example.com/file.zip";
+    const downloadLink = "https://drive.usercontent.google.com/download?id=1uNdKkg3rGoQ8hjGnxrVeVZ_7ngVmnKsC&export=download&authuser=0";
 
     // 检测是否是手机
     function isMobile() {
