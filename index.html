@@ -1,183 +1,162 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>页面未找到 - 桃星音乐 404错误</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f0f0f0;
-            color: #333;
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            text-align: center;
-            background-color: white;
-            border-radius: 12px;
-            padding: 50px 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .branding {
-            margin-bottom: 30px;
-        }
-        
-        .branding h2 {
-            font-size: 1.8rem;
-            color: #f35626;
-            margin-top: 10px;
-        }
-        
-        .error-icon {
-            margin-bottom: 20px;
-            font-size: 80px;
-            color: #f35626;
-        }
-        
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-        
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background-color: #f35626;
-            color: white;
-            border: 2px solid #f35626;
-        }
-        
-        .btn-primary:hover {
-            background-color: transparent;
-            color: #f35626;
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: #f35626;
-            border: 2px solid #f35626;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #f35626;
-            color: white;
-        }
-        
-        .links {
-            margin-top: 30px;
-            text-align: center;
-        }
-        
-        .links a {
-            color: #666;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        
-        .links a:hover {
-            color: #f35626;
-        }
-        
-        .scifi-background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            z-index: -1;
-            opacity: 0.5;
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 3rem;
-            }
-            
-            .buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        
-        /* 动画效果 */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 页面未找到 - 桃星音乐</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .branding svg {
+      margin-bottom: 10px;
+    }
+
+    .branding h2 {
+      font-size: 1.8rem;
+      color: #f35626;
+      margin-bottom: 5px;
+    }
+
+    .branding p {
+      color: #888;
+      font-size: 1rem;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #f35626;
+      margin: 30px 0 10px;
+    }
+
+    p.description {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+      border: 2px solid #f35626;
+    }
+
+    .btn-primary {
+      background: #f35626;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: #f35626;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #f35626;
+    }
+
+    .btn-secondary:hover {
+      background: #f35626;
+      color: white;
+    }
+
+    .links {
+      margin-top: 30px;
+      font-size: 0.95rem;
+    }
+
+    .links a {
+      margin: 0 12px;
+      color: #666;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      color: #f35626;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3rem;
+      }
+
+      .buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+
+    /* 浮动动画 */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .floating {
+      animation: float 4s ease-in-out infinite;
+    }
+  </style>
 </head>
 <body>
-    <div class="scifi-background"></div>
-    <div class="container">
-        <div class="branding">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="30" r="28" stroke="#f35626" stroke-width="4" fill="none"/>
-                <path d="M20 25L40 35" stroke="#f35626" stroke-width="4" stroke-linecap="round"/>
-                <path d="M20 35L40 25" stroke="#f35626" stroke-width="4" stroke-linecap="round"/>
-            </svg>
-            <h2>桃星音乐</h2>
-            <p>由火狮桃星开发</p>
-        </div>
-        
-        <div class="error-icon floating">ERROR</div>
-        <h1>404</h1>
-        <p>抱歉，您正在寻找的页面不存在</p>
-        
-        <div class="buttons">
-<a href="javascript:history.back()" class="btn btn-primary">返回</a>
-            <a href="https://huoshi-taoxing.github.io/taoxing-music/taoxing-music-web/" class="btn btn-secondary">进入 桃星音乐</a>
-        </div>
-        
-        <div class="links">
-            <a href="/contact">联系火狮桃星</a>
-            <a href="/support">技术支持</a>
-        </div>
+  <div class="container floating">
+    <div class="branding">
+      <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="30" r="28" stroke="#f35626" stroke-width="4" fill="none"/>
+        <path d="M20 25L40 35" stroke="#f35626" stroke-width="4" stroke-linecap="round"/>
+        <path d="M20 35L40 25" stroke="#f35626" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+      <h2>桃星音乐</h2>
+      <p>由火狮桃星开发</p>
     </div>
+
+    <h1>404</h1>
+    <p class="description">抱歉，您访问的页面不存在。</p>
+
+    <div class="buttons">
+      <a href="javascript:history.back()" class="btn btn-primary">返回上一页</a>
+      <a href="https://huoshi-taoxing.github.io/taoxing-music/taoxing-music-web/" class="btn btn-secondary">进入 桃星音乐</a>
+    </div>
+
+    <div class="links">
+      <a href="/contact">联系火狮桃星</a>
+      <a href="/support">技术支持</a>
+    </div>
+  </div>
 </body>
 </html>
