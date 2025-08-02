@@ -79,7 +79,98 @@
     });
 
 
+    const video = document.getElementById('video-taoxing-music');
+    const playPauseBtn = document.getElementById('playPause-taoxing-music');
+    const muteUnmuteBtn = document.getElementById('muteUnmute-taoxing-music');
+    const fullscreenBtn = document.getElementById('fullscreen-taoxing-music');
+    const progress = document.getElementById('progress-taoxing-music');
+    const timeDisplay = document.getElementById('timeDisplay-taoxing-music');
+    const controls = document.getElementById('controls-taoxing-music');
+    const container = document.getElementById('container-taoxing-music');
+
+    let hideControlsTimeout;
+
+    video.addEventListener('contextmenu', e => e.preventDefault());
+
+    function togglePlay() {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    }
+
+    function updatePlayIcon() {
+      playPauseBtn.innerHTML = video.paused
+        ? '<i class="fa-solid fa-play"></i>'
+        : '<i class="fa-solid fa-pause"></i>';
+    }
+
+    playPauseBtn.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
+    video.addEventListener('play', updatePlayIcon);
+    video.addEventListener('pause', updatePlayIcon);
+
+    muteUnmuteBtn.addEventListener('click', () => {
+      video.muted = !video.muted;
+      muteUnmuteBtn.innerHTML = video.muted
+        ? '<i class="fa-solid fa-volume-mute"></i>'
+        : '<i class="fa-solid fa-volume-up"></i>';
+    });
+
+    fullscreenBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        container.requestFullscreen?.() || container.webkitRequestFullscreen?.();
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-compress"></i>';
+      } else {
+        document.exitFullscreen?.() || document.webkitExitFullscreen?.();
+        fullscreenBtn.innerHTML = '<i class="fa-solid fa-expand"></i>';
+      }
+    });
+
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${mins}:${secs}`;
+    }
+
+    function updateTimeDisplay() {
+      const current = formatTime(video.currentTime);
+      const duration = isNaN(video.duration) ? '0:00' : formatTime(video.duration);
+      timeDisplay.textContent = `${current} / ${duration}`;
+    }
+
+    video.addEventListener('loadedmetadata', updateTimeDisplay);
+    video.addEventListener('timeupdate', () => {
+      const value = (video.currentTime / video.duration) * 100;
+      progress.value = value || 0;
+      updateTimeDisplay();
+    });
+
+    progress.addEventListener('input', () => {
+      const time = (progress.value / 100) * video.duration;
+      video.currentTime = time;
+    });
+
+    function showControls() {
+      controls.classList.remove('hidden');
+      clearTimeout(hideControlsTimeout);
+      hideControlsTimeout = setTimeout(() => {
+        if (!video.paused) {
+          controls.classList.add('hidden');
+        }
+      }, 2000);
+    }
+
+    container.addEventListener('mousemove', showControls);
+    container.addEventListener('mouseleave', () => controls.classList.add('hidden'));
+    video.addEventListener('play', showControls);
+    video.addEventListener('pause', () => controls.classList.remove('hidden'));
+
+    updatePlayIcon();
+
 
 
 
   
+
