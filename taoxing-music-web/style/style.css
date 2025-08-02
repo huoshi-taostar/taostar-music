@@ -779,6 +779,7 @@
     -webkit-text-fill-color: transparent;
     margin: 10px 0;
     text-shadow: 0 0 10px rgba(0, 230, 204, 0.4);
+                    cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
 }
 
     .video-container-taoxing-music {
@@ -790,6 +791,7 @@
       border: 2px solid #00bcd4;
       border-radius: 12px;
       overflow: hidden;
+                        cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
     }
 
     video {
@@ -798,6 +800,7 @@
       display: block;
       background: #000;
       cursor: pointer;
+                        cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
     }
 
     .controls-taoxing-music {
@@ -812,11 +815,13 @@
       gap: 10px;
       z-index: 10;
       transition: opacity 0.3s ease;
+                        cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
     }
 
     .controls-taoxing-music.hidden {
       opacity: 0;
       pointer-events: none;
+                        cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
     }
 
     .controls-taoxing-music button,
@@ -833,10 +838,12 @@
       justify-content: center;
       height: 32px;
       width: 36px;
+                cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
     }
 
     .controls-taoxing-music button:hover {
       color: #00ffff;
+                        cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
     }
 
     .controls-taoxing-music i {
@@ -881,6 +888,7 @@
     :fullscreen .controls-taoxing-music,
     :-webkit-full-screen .controls-taoxing-music {
       position: absolute;
+                        cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto !important;
     }
 
     video::-internal-media-controls-download-button,
