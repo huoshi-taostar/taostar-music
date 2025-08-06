@@ -16,20 +16,21 @@
             font-family: 'Poppins', 'Microsoft YaHei', sans-serif;
         }
 
-        body {
-            background: linear-gradient(135deg, #0000005a 0%, #00000038 100%),
-                url('background.jpg');
-            background-blend-mode: multiply;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            overflow-x: hidden;
-            position: relative;
-            cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto;
-            color: var(--text-accent);
-            text-shadow: 0 0 5px rgba(0, 233, 254, 0.463);
-            min-height: 100vh;
-        }
+body {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.45) 100%),
+        url('background.jpg');
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+    cursor: url('https://i.ibb.co/27ktrWvb/icon11.png'), auto;
+    color: var(--text-accent);
+    text-shadow: 0 0 5px rgba(0, 233, 254, 0.463);
+    min-height: 100vh;
+}
+
 
         a,
         button,
