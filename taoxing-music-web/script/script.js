@@ -170,7 +170,72 @@
     updatePlayIcon();
 
 
+    const background = document.getElementById('background-elements');
+    const starCount = 100; // 星星数量
+
+    // 生成闪烁的星星
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 3 + 1 + 'px';
+        star.style.width = size;
+        star.style.height = size;
+        star.style.top = Math.random() * 100 + '%';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.animationDelay = (Math.random() * 3) + 's';
+        background.appendChild(star);
+    }
+
+    // 生成流星
+    function createMeteor() {
+        const meteor = document.createElement('div');
+        meteor.classList.add('meteor');
+
+        // 起始位置（随机在屏幕上方）
+        meteor.style.top = Math.random() * 20 + '%';
+        meteor.style.left = Math.random() * 100 + '%';
+
+        background.appendChild(meteor);
+
+        // 一段时间后移除流星（防止 DOM 堆积）
+        setTimeout(() => {
+            meteor.remove();
+        }, 3000);
+    }
+
+    // 每隔一段时间随机生成流星
+    setInterval(() => {
+        if (Math.random() < 0.2) { // 控制概率
+            createMeteor();
+        }
+    }, 1000);
+
+
+function createMeteor() {
+    const meteor = document.createElement('div');
+    meteor.classList.add('meteor');
+
+    // 随机长度
+    const length = Math.random() * 80 + 60; 
+    meteor.style.height = length + 'px';
+
+    // 随机位置
+    meteor.style.top = Math.random() * 20 + '%';
+    meteor.style.left = Math.random() * 100 + '%';
+
+    // 随机速度
+    const speed = Math.random() * 0.8 + 1.2; 
+    meteor.style.animationDuration = speed + 's';
+
+    background.appendChild(meteor);
+
+    setTimeout(() => meteor.remove(), speed * 1000);
+}
+
+
+
 
 
   
+
 
