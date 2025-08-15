@@ -1,0 +1,38 @@
+{
+  "消息": [
+    {
+      "title": "系统维护公告",
+      "title_font": {"size": 16, "color": "#00ffff"},
+      "content": "尊敬的用户，系统将于今晚23:00进行维护，预计持续2小时。",
+      "content_font": {"size": 12, "color": "#ffffff"},
+      "images": ["images/maintenance.png"],
+      "spacer": 1
+    },
+    {
+      "title": "新功能上线",
+      "title_font": {"size": 15, "color": "#00ffcc"},
+      "content": "我们新增了多语言支持，现在可以选择中文、英文和日文界面。",
+      "content_font": {"size": 11, "color": "#ccccff"},
+      "images": [],
+      "spacer": 2
+    }
+  ],
+  "通知": [
+    {
+      "title": "安全提醒",
+      "title_font": {"size": 14, "color": "#ffcc00"},
+      "content": "请勿泄露您的账号密码，官方不会主动索取。",
+      "content_font": {"size": 11, "color": "#ffffff"},
+      "images": ["images/security.png"],
+      "spacer": 1
+    },
+    {
+      "title": "活动通知",
+      "title_font": {"size": 16, "color": "#00ffff"},
+      "content": "本周末举办线上抽奖活动，参与即可获得精美礼品！",
+      "content_font": {"size": 12, "color": "#ffffff"},
+      "images": [],
+      "spacer": 1
+    }
+  ]
+}
