@@ -5,7 +5,7 @@
       "title_font": {"size": 16, "color": "#00ffff"},
       "content": "测试 测试 测试",
       "content_font": {"size": 12, "color": "#ffffff"},
-      "images": ["https://huoshi-taoxing.github.io/taoxing-music/taoxing-music-web/background/taoxing-music-img3.png"],
+      "images": [""],
       "spacer": 1
     },
     {
@@ -36,4 +36,5 @@
     }
   ]
 }
+
 
