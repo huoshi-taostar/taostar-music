@@ -1,29 +1,105 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="桃星音乐 欣赏纯音乐和动漫风景壁纸、助眠声音、自然音效与治愈体验，是一个让你放松心灵的音乐平台。">
-  <meta name="keywords" content="桃星音乐, 助眠音乐, 自然声音, 治愈, 动态壁纸, 动漫风景, taoxing music, 治愈音乐">
-  <meta name="author" content="火狮桃星">
+    <meta name="description" content="桃星音乐 欣赏纯音乐和动漫风景壁纸、助眠声音、自然音效与治愈体验，是一个让你放松心灵的音乐平台。">
+    <meta name="keywords" content="桃星音乐, 助眠音乐, 自然声音, 治愈, 动态壁纸, 动漫风景, taoxing music, 治愈音乐">
+    <meta name="author" content="火狮桃星">
     <title>桃星音乐</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="style/style.css">
     <link rel="icon" type="image/x-icon" href="ico.jpg">
-</head>
-<body>
-            <div class="huojian01" id="huojian01Btn">
-            <img src="huojian.png" alt="Scroll to Top">
-          </div>
+    <style>
+        /* 左上角科技感按钮 */
+        #rewardBtn {
+            top: 20px;
+            left: 20px;
+            padding: 8px 24px;
+            background: linear-gradient(135deg, #016a71a5, #026864b7);
+            color: #ffffffd7;
+            border: 2px solid #00eeff85;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 0 6px #00eeff5a;
+            transition: all 0.3s ease;
+        }
 
-              <!-- 装饰性背景元素 -->
+        #rewardBtn:hover {
+            box-shadow: 0 0 20px #00929caa, 0 0 40px rgba(1, 170, 170, 0.471);
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* 遮罩层 */
+        #rewardOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.633);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 中心弹出图片 科幻效果 */
+        #rewardOverlay img {
+            max-width: 320px;
+            max-height: 320px;
+            border-radius: 16px;
+            box-shadow: 0 0 24px #00eaffbc, 0 0 48px rgba(0, 255, 255, 0.5);
+            animation: sciFiPop 0.6s ease forwards;
+            opacity: 0;
+            transform: scale(0.5) rotateY(90deg);
+        }
+
+        @keyframes sciFiPop {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotateY(90deg);
+                filter: blur(12px);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotateY(-15deg);
+                filter: blur(2px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) rotateY(0deg);
+                filter: blur(0);
+            }
+        }
+
+        /* 点击遮罩关闭 */
+        #rewardOverlay:active {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="huojian01" id="huojian01Btn">
+        <img src="huojian.png" alt="Scroll to Top">
+    </div>
+
+    <!-- 装饰性背景元素 -->
     <div class="background-elements" id="background-elements"></div>
 
     <!-- 粒子背景 -->
     <div id="particles-js"></div>
-    
+
     <!-- 顶部导航 -->
     <nav class="navbar">
         <div class="logo">
@@ -31,11 +107,14 @@
         </div>
         <div class="nav-links">
             <a href="#"><i class="fas fa-home"></i> 首页</a>
-            <a href="https://github.com/Huoshi-taoxing/taoxing-music/releases/download/v1.2.6/Taoxing-Music-Launcher.zip"><i class="fas fa-download"></i> 下载</a>
+            <a
+                href="https://github.com/Huoshi-taoxing/taoxing-music/releases/download/v1.2.6/Taoxing-Music-Launcher.zip"><i
+                    class="fas fa-download"></i> 下载</a>
             <a href="#"><i class="fas fa-image"></i> 壁纸</a>
+            <a href="#support">自愿赞赏</a>
             <a href="https://huoshi-taoxing.github.io/"><i class="fas fa-info-circle"></i> 关于 火狮桃星</a>
         </div>
-        
+
         <!-- 汉堡菜单 -->
         <div class="hamburger" id="hamburger">
             <div class="line1"></div>
@@ -43,17 +122,19 @@
             <div class="line3"></div>
         </div>
     </nav>
-    
+
     <!-- 移动端菜单 -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#"><i class="fas fa-home"></i>首页</a>
-        <a href="https://github.com/Huoshi-taoxing/taoxing-music/releases/download/v1.2.6/Taoxing-Music-Launcher.zip"><i class="fas fa-download"></i>下载</a>
+        <a href="https://github.com/Huoshi-taoxing/taoxing-music/releases/download/v1.2.6/Taoxing-Music-Launcher.zip"><i
+                class="fas fa-download"></i>下载</a>
         <a href="#"><i class="fas fa-image"></i>壁纸</a>
+        <a href="#support">自愿赞赏</a>
         <a href="https://huoshi-taoxing.github.io/"><i class="fas fa-info-circle"></i>关于 火狮桃星</a>
     </div>
-    
+
     <div class="menu-overlay" id="menuOverlay"></div>
-    
+
     <!-- 主内容区 -->
     <div class="container">
         <section class="hero">
@@ -62,11 +143,14 @@
             <br><br><br><br>
             <p class="fade-in">沉浸式治愈动漫壁纸体验，搭配助眠自然音效，为您带来前所未有的放松体验。<br><br> </p>
             <br><br>
-            <img src="ico.jpg" class="fade-in" style="max-width: 90px; max-height: 90px; border-radius: 5px; border: solid 2px rgba(6, 184, 224, 0.704); box-shadow: 0 0 20px rgba(5, 203, 234, 0.684);"><br>
+            <img src="ico.jpg" class="fade-in"
+                style="max-width: 90px; max-height: 90px; border-radius: 5px; border: solid 2px rgba(6, 184, 224, 0.704); box-shadow: 0 0 20px rgba(5, 203, 234, 0.684);"><br>
             <br><br>
-<br><br>
-            <p>直接下载 桃星音乐 启动器 zip 压缩包，需要自己手动解压。推荐 直接下载 桃星音乐 安装器 自动化安装。 <a href="#installer" style="decoration: none; color: aqua;">跳转</a>  </p>
-                        <a id="launcher" href="https://github.com/Huoshi-taoxing/taoxing-music/releases/download/v1.2.6/Taoxing-Music-Launcher.zip">
+            <br><br>
+            <p>直接下载 桃星音乐 启动器 zip 压缩包，需要自己手动解压。推荐 直接下载 桃星音乐 安装器 自动化安装。 <a href="#installer"
+                    style="text-decoration: none; color: aqua;">跳转</a> </p>
+            <a id="launcher"
+                href="https://github.com/Huoshi-taoxing/taoxing-music/releases/download/v1.2.6/Taoxing-Music-Launcher.zip">
                 <button class="download-btn fade-in"> <!--可在class中添加  floating -->
                     <i class="fas fa-download"></i> 下载 桃星音乐 启动器(v1.2.6)
                 </button>
@@ -76,80 +160,86 @@
             <br>
 
             <!--视频-->
-              <div class="video-container-taoxing-music" id="container-taoxing-music">
-    <video id="video-taoxing-music" src="https://github.com/Huoshi-taoxing/taoxing/releases/download/v1.1.0/default.mp4" preload="metadata" controlsList="nodownload" poster="https://raw.githubusercontent.com/Huoshi-taoxing/taoxing-music/refs/heads/main/taoxing-music-web/background/taoxing-music-video-play.jpg"></video>
+            <div class="video-container-taoxing-music" id="container-taoxing-music">
+                <video id="video-taoxing-music"
+                    src="https://github.com/Huoshi-taoxing/taoxing/releases/download/v1.1.0/default.mp4"
+                    preload="metadata" controlsList="nodownload"
+                    poster="https://raw.githubusercontent.com/Huoshi-taoxing/taoxing-music/refs/heads/main/taoxing-music-web/background/taoxing-music-video-play.jpg"></video>
 
-    <div class="controls-taoxing-music" id="controls-taoxing-music">
-      <button id="playPause-taoxing-music"><i class="fa-solid fa-play"></i></button>
-      <input type="range" id="progress-taoxing-music" value="0" min="0" max="100" step="0.1">
-      <div class="time-taoxing-music" id="timeDisplay-taoxing-music">0:00 / 0:00</div>
-      <button id="muteUnmute-taoxing-music"><i class="fa-solid fa-volume-up"></i></button>
-      <button id="fullscreen-taoxing-music"><i class="fa-solid fa-expand"></i></button>
-    </div>
-  </div>
-            
+                <div class="controls-taoxing-music" id="controls-taoxing-music">
+                    <button id="playPause-taoxing-music"><i class="fa-solid fa-play"></i></button>
+                    <input type="range" id="progress-taoxing-music" value="0" min="0" max="100" step="0.1">
+                    <div class="time-taoxing-music" id="timeDisplay-taoxing-music">0:00 / 0:00</div>
+                    <button id="muteUnmute-taoxing-music"><i class="fa-solid fa-volume-up"></i></button>
+                    <button id="fullscreen-taoxing-music"><i class="fa-solid fa-expand"></i></button>
+                </div>
+            </div>
+
             <br>
-        <p> 前往 <a href="https://huoshi-taoxing.github.io/" style="decoration: none; color: aqua;">火狮桃星</a>  官网</p>
+            <p> 前往 <a href="https://huoshi-taoxing.github.io/" style="text-decoration: none; color: aqua;"> <b>火狮桃星</b>
+                </a> 官网</p>
             <br><br>
 
-            
+
             <br><br>
-            <a id="installer" href="https://github.com/Huoshi-taoxing/huoshi-taoxing.github.io/releases/download/v.1.0/Taostar-Music-Installer.exe">
+            <a id="installer"
+                href="https://github.com/Huoshi-taoxing/huoshi-taoxing.github.io/releases/download/v.1.0/Taostar-Music-Installer.exe">
                 <button class="download-btn fade-in">
-                    <i class="fas fa-download"></i>  下载 桃星音乐 安装器 (推荐)
+                    <i class="fas fa-download"></i> 下载 桃星音乐 安装器 (推荐)
                 </button> <!--可在class中添加  floating -->
             </a>
-                <br><br>
-                         <p> 想要直接下载 压缩包 ZIP 手动解压安装可以往下滑<a href="#launcher" style="decoration: none; color: aqua;">跳转</a> ，优先推荐下载 上方的 安装器 自动化安装。  </p>
-            
+            <br><br>
+            <p> 想要直接下载 压缩包 ZIP 手动解压安装可以往下滑<a href="#launcher" style="text-decoration: none; color: aqua;">跳转</a> ，优先推荐下载
+                上方的 安装器 自动化安装。 </p>
+
             <br><br>
 
 
-    <!-- 更新内容优化 -->
-    <div class="update-highlight fade-in">
-        <h3><i class="fas fa-sync-alt"></i> 最新更新</h3>
-        <ul>
-            <li>修复高清壁纸渲染导致的性能问题，大幅提升流畅度</li>
-             <li>自动切换壁纸图</li>
-            <li>新增右键菜单功能，快速管理播放列表</li>
-            <li> 核心版本 更新</li>
-            <li> 桃星音乐中 创建了 可视化的 节奏环 之外，也调整了 节奏环 的 样子，并且在 开启 节奏环后 按下 键盘中的 C 会显示 例子星星 往前非过来跟着音乐的节奏调整速度。 </li>
-        </ul>
-    </div>
-    
-    <p class="fade-in">**重要提示：更新后若未显示新内容，请按 Ctrl + F5 强制刷新软件**</p>
-    <br><br>
-    
-    <!-- 系统要求优化 update new -->
-    <div class="requirements fade-in">
-        <h3><i class="fas fa-laptop"></i> 系统要求</h3>
-        <ul>
-            <li>操作系统：Windows 10/11（64位）</li>
-            <li>内存：6.00 GB RAM（推荐8.00 GB）</li>
-            <li>存储空间：2GB 可用空间</li>
-            <li>需要 Chrome 内核支持，在桃星音乐启动器中可自动安装所需文件。</li>
-        </ul>
-    </div>
-    
-    <!-- 版本信息卡片化 -->
-    <div class="version-grid fade-in">
-        <div class="version-card">
-            <h4>核心版本</h4>
-            <div class="version-number">v6.2</div>
-            <p>未来化</p>
-        </div>
-        <div class="version-card">
-            <h4>启动器版本</h4>
-            <div class="version-number">v1.2.4</div>
-            <p>公告更新</p>
-        </div>
-    </div>
-    
-    <p class="fade-in">桃星音乐由火狮团队开发，是一款专注于提供高品质治愈音画的桌面应用。安装包大小：1.5 GB</p>
-    <br>
-    <p class="fade-in">下载后请解压压缩包，运行"桃星音乐启动器.exe"开始体验。新版本发布将在官网同步更新</p>
-    <br><br>
-</section>        
+            <!-- 更新内容优化 -->
+            <div class="update-highlight fade-in">
+                <h3><i class="fas fa-sync-alt"></i> 最新更新</h3>
+                <ul>
+                    <li>修复高清壁纸渲染导致的性能问题，大幅提升流畅度</li>
+                    <li>自动切换壁纸图</li>
+                    <li>新增右键菜单功能，快速管理播放列表</li>
+                    <li> 核心版本 更新</li>
+                    <li> 桃星音乐中 创建了 可视化的 节奏环 之外，也调整了 节奏环 的 样子，并且在 开启 节奏环后 按下 键盘中的 C 会显示 例子星星 往前非过来跟着音乐的节奏调整速度。 </li>
+                </ul>
+            </div>
+
+            <p class="fade-in">**重要提示：更新后若未显示新内容，请按 Ctrl + F5 强制刷新软件**</p>
+            <br><br>
+
+            <!-- 系统要求优化 update new -->
+            <div class="requirements fade-in">
+                <h3><i class="fas fa-laptop"></i> 系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows 10/11（64位）</li>
+                    <li>内存：6.00 GB RAM（推荐8.00 GB）</li>
+                    <li>存储空间：2GB 可用空间</li>
+                    <li>需要 Chrome 内核支持，在桃星音乐启动器中可自动安装所需文件。</li>
+                </ul>
+            </div>
+
+            <!-- 版本信息卡片化 -->
+            <div class="version-grid fade-in">
+                <div class="version-card">
+                    <h4>核心版本</h4>
+                    <div class="version-number">v6.2</div>
+                    <p>未来化</p>
+                </div>
+                <div class="version-card">
+                    <h4>启动器版本</h4>
+                    <div class="version-number">v1.2.4</div>
+                    <p>公告更新</p>
+                </div>
+            </div>
+
+            <p class="fade-in">桃星音乐由火狮团队开发，是一款专注于提供高品质治愈音画的桌面应用。安装包大小：1.5 GB</p>
+            <br>
+            <p class="fade-in">下载后请解压压缩包，运行"桃星音乐启动器.exe"开始体验。新版本发布将在官网同步更新</p>
+            <br><br>
+        </section>
         <!-- 功能展示 -->
         <section class="features">
             <div class="feature-card fade-in">
@@ -157,20 +247,20 @@
                 <h3>治愈动漫风景壁纸</h3>
                 <p>高质量动漫风景壁纸，多种风格满足不同审美需求。</p>
             </div>
-            
+
             <div class="feature-card fade-in">
                 <i class="fas fa-moon"></i>
                 <h3>助眠声效</h3>
                 <p>助眠音效，包括雨声、海浪、雨中打伞、微风等，帮助您快速入眠。</p>
             </div>
-            
+
             <div class="feature-card fade-in">
                 <i class="fas fa-gamepad"></i>
                 <h3>沉浸式游戏体验</h3>
                 <p>无论是畅玩大型游戏，还是在游戏过程中同时播放桃星音乐，系统依然保持流畅运行，性能毫无压力，带来沉浸式的娱乐享受。</p>
             </div>
         </section>
-        
+
         <!-- 展示图区域 -->
         <section class="showcase">
             <h2 class="fade-in">功能展示</h2>
@@ -193,46 +283,72 @@
             </div>
         </section>
     </div>
-    
+
+    <div id="rewardOverlay">
+        <img src="data:image/png;base64,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"
+            alt="赞赏二维码">
+    </div>
+
     <!-- 底部 -->
     <footer>
-        <p>&copy; 2025 火狮桃星 | 桃星音乐 核心: v6.2 启动器: v1.2.5 </p> <p> 前往 <a href="https://huoshi-taoxing.github.io/" style="decoration: none; color: aqua;">火狮桃星</a>  官网</p>
-        <p>在抖音 <a href="https://www.douyin.com/user/MS4wLjABAAAACijCHXWkdAit63xNKQJqV1v_SikFaSv361RJzIktzAX15pBKLOT65qZe7-A-wpHX?from_tab_name=main"><b>联系</b></a> 开发者 火狮桃星</p>
-        <p> Update List 更新 日志 <a href="update-list.htm?huoshi-taoxing=taoxing-music+update-list-changelog~huoshitaostar~bnry=01101000+01110100+00101101+01101000+01110011">查看</a> </p>
+        <p>&copy; 2025 火狮桃星 | 桃星音乐 核心: v6.2 启动器: v1.2.5 </p>
+        <button title="支持 桃星音乐" id="rewardBtn"><i id="support"> 赞赏 </i> </button>
+        <br><br>
+        <p> 前往 <a href="https://huoshi-taoxing.github.io/" style="text-decoration: none; color: aqua;">火狮桃星 </a> 官网</p>
+        <p>在抖音 <a
+                href="https://www.douyin.com/user/MS4wLjABAAAACijCHXWkdAit63xNKQJqV1v_SikFaSv361RJzIktzAX15pBKLOT65qZe7-A-wpHX?from_tab_name=main"><b>联系</b></a>
+            开发者 火狮桃星</p>
+        <p> Update List 更新 日志 <a
+                href="update-list.htm?huoshi-taoxing=taoxing-music+update-list-changelog~huoshitaostar~bnry=01101000+01110100+00101101+01101000+01110011">查看</a>
+        </p>
         <div class="footer-logo">
-            <svg class="img-fluid" 
-                style="transform: matrix(0.3,0,0,0.3,11.2425,-21.9366); transform-origin: 50% 50%; transition: transform 200ms ease-in-out;" 
-                width="210" 
-                height="210" 
-                viewBox="0 0 4770 4210"
-            >
+            <svg class="img-fluid"
+                style="transform: matrix(0.3,0,0,0.3,11.2425,-21.9366); transform-origin: 50% 50%; transition: transform 200ms ease-in-out;"
+                width="210" height="210" viewBox="0 0 4770 4210">
                 <!-- 黑色图形 -->
                 <g fill="rgb(0,0,0)">
-                  <path d="M2373 4049 c-11 -24 -43 -115 -72 -202 l-53 -157 -32 28 c-19 16 -56 34 -89 42 -50 12 -62 19 -92 60 -32 44 -128 140 -140 140 -3 0 -2 -38 1 -84 4 -52 3 -85 -3 -89 -17 -11 -106 24 -138 53 -32 30 -67 50 -85 50 -7 0 -5 -7 4 -16 33 -32 67 -104 72 -150 10 -84 -7 -121 -104 -225 l-89 -94 -62 58 c-34 31 -68 57 -74 57 -9 0 -11 -14 -9 -42 l4 -43 -25 23 c-32 30 -82 41 -182 42 l-80 0 44 -42 c24 -24 55 -67 68 -96 22 -51 31 -116 15 -125 -4 -3 -32 5 -62 18 -30 12 -70 26 -89 30 l-33 7 21 -28 c11 -16 34 -66 51 -112 35 -95 38 -161 11 -237 l-18 -50 -79 -27 c-47 -16 -143 -35 -236 -47 -213 -29 -208 -26 -201 -95 3 -31 1 -75 -5 -98 -6 -24 -14 -65 -17 -91 -4 -33 -14 -55 -30 -69 -13 -11 -38 -49 -55 -85 -22 -44 -43 -71 -65 -84 -31 -19 -75 -96 -75 -132 0 -29 44 -68 251 -217 116 -85 215 -163 220 -174 5 -12 13 -48 19 -81 7 -43 16 -64 32 -75 12 -8 45 -34 73 -58 70 -61 186 -129 355 -209 l145 -70 36 -114 c21 -63 53 -148 72 -190 l35 -76 138 -36 c287 -75 350 -81 544 -47 132 23 349 78 431 109 32 12 85 41 120 64 34 23 71 47 82 53 41 25 254 195 289 231 35 36 78 124 78 161 0 10 28 36 65 60 108 73 152 118 199 205 32 58 69 105 123 159 155 153 216 218 210 224 -3 3 -18 -3 -34 -13 -15 -11 -43 -25 -62 -31 -30 -11 -32 -10 -26 6 13 30 17 194 8 264 -8 56 -7 70 8 89 9 12 22 47 29 78 6 31 16 66 21 79 5 13 9 33 9 45 0 12 14 69 30 127 17 58 30 108 30 112 0 17 -23 6 -108 -48 -48 -31 -103 -67 -122 -79 l-35 -22 0 66 c0 64 -20 127 -70 224 -11 20 -15 62 -15 140 0 62 -3 122 -7 135 -5 22 -10 19 -64 -40 l-58 -63 -1 38 c-1 86 -37 175 -85 211 -14 10 -25 28 -25 38 0 49 -26 -1 -80 -150 -53 -150 -93 -232 -112 -232 -5 0 -8 8 -8 18 -2 58 -121 226 -193 271 -38 24 -83 79 -103 126 -8 19 -25 42 -38 50 -13 9 -28 26 -32 38 -5 15 -9 -2 -11 -55 -2 -43 -8 -78 -12 -78 -5 0 -14 14 -21 30 -19 45 -103 116 -161 135 -48 16 -50 18 -44 46 7 32 -11 122 -30 154 -7 11 -16 44 -19 74 -4 30 -14 67 -22 82 -7 15 -14 54 -14 86 0 82 -13 97 -37 42z m56 -507 c16 -256 44 -343 159 -499 l60 -81 -18 -93 c-22 -107 -30 -135 -58 -201 -46 -105 -157 -248 -192 -248 -10 0 -24 -7 -31 -16 -12 -14 -115 -66 -188 -95 -27 -11 -29 -16 42 77 53 69 113 193 127 261 18 83 7 343 -18 458 -11 50 -26 142 -32 205 -15 137 -2 227 56 410 l36 115 23 -63 c18 -49 25 -101 34 -230z m-396 127 c14 -26 45 -89 67 -140 37 -84 41 -100 35 -146 -5 -41 2 -83 34 -212 52 -207 69 -328 52 -367 -25 -56 -130 -120 -229 -138 l-32 -6 31 61 c90 179 94 413 13 864 -14 77 -28 149 -31 160 -4 17 -2 16 14 -5 11 -14 31 -46 46 -71z m-213 -9 c9 -16 8 -20 -5 -20 -8 0 -15 9 -15 20 0 11 2 20 5 20 2 0 9 -9 15 -20z m111 -365 c12 -85 19 -172 16 -200 -5 -48 -85 -251 -94 -241 -5 5 -58 149 -70 189 -3 10 9 49 26 87 33 72 63 197 77 317 7 63 8 65 15 33 4 -19 18 -102 30 -185z m952 -165 c30 -81 31 -92 32 -235 0 -229 0 -228 -108 -338 -90 -91 -191 -174 -332 -273 l-70 -48 77 77 c141 142 217 285 257 483 22 111 41 317 42 468 l0 101 35 -75 c19 -41 49 -113 67 -160z m-1529 174 c4 -16 2 -32 -6 -42 -11 -13 -14 -11 -19 14 -4 16 -7 40 -8 53 -1 19 2 21 13 12 8 -7 17 -23 20 -37z m13 -297 c13 -18 26 -47 29 -65 l7 -32 -72 0 c-39 0 -71 2 -71 4 0 11 72 126 78 126 4 0 17 -15 29 -33z m286 -3 c22 -8 51 -64 83 -160 27 -85 29 -107 11 -123 -19 -15 -27 -4 -27 39 0 31 -5 38 -32 52 -29 14 -34 22 -45 77 -6 34 -21 79 -32 101 l-20 39 22 -10 c12 -5 30 -12 40 -15z m1802 -81 c-37 -166 -89 -275 -205 -432 -33 -45 -60 -85 -60 -90 0 -18 -427 -303 -608 -405 -77 -43 -254 -126 -270 -126 -4 0 53 32 126 70 260 136 437 286 637 540 54 69 105 130 112 137 8 6 22 25 31 42 22 41 246 350 250 346 2 -2 -4 -39 -13 -82z m-1925 -165 c84 -40 92 -48 104 -119 l12 -64 42 -3 c44 -3 52 -12 27 -32 -10 -8 -15 -31 -15 -66 l0 -54 38 0 c40 0 195 31 250 51 17 6 61 26 97 44 l64 32 -17 -30 c-20 -34 -107 -138 -216 -256 -75 -82 -77 -85 -74 -130 l3 -46 72 0 c39 0 69 -2 67 -5 -3 -3 -44 -34 -92 -70 -87 -65 -87 -65 -87 -110 l0 -45 56 0 56 0 -41 -37 c-23 -20 -45 -37 -49 -38 -20 -1 -37 -32 -37 -69 0 -38 2 -41 29 -41 15 0 42 -5 60 -11 25 -9 31 -16 31 -40 0 -27 -2 -29 -41 -29 l-40 0 3 -37 c3 -38 4 -38 53 -44 45 -5 42 -6 -27 -7 l-78 -2 0 -34 c0 -25 6 -38 26 -51 36 -24 21 -33 -66 -41 -41 -4 -78 -11 -81 -17 -4 -5 -39 -15 -78 -21 l-72 -12 -119 52 c-185 81 -295 143 -378 212 -66 54 -79 70 -90 110 -6 26 -11 58 -9 72 2 24 4 23 50 -23 26 -26 47 -54 47 -62 0 -11 13 -15 54 -15 37 0 77 -9 127 -30 77 -31 146 -38 193 -20 21 8 26 16 26 44 0 21 -6 38 -15 44 -14 7 -14 11 0 40 9 17 15 46 13 64 -3 28 -8 33 -48 44 -25 7 -65 20 -89 29 -45 16 -177 16 -323 0 -54 -6 -57 -8 -60 -37 l-3 -30 -204 148 c-222 161 -219 156 -112 170 35 4 58 2 84 -11 20 -9 52 -15 73 -13 39 3 39 4 42 49 2 34 -2 49 -16 62 -22 20 -142 57 -184 57 l-27 0 22 43 c18 34 29 44 62 52 22 5 42 12 45 15 6 7 233 30 296 30 59 0 107 23 162 78 75 76 77 79 82 160 l5 76 125 27 c69 15 127 26 130 25 3 -1 30 -13 60 -28z m2257 -120 c-2 -7 -17 -58 -32 -113 -71 -252 -131 -340 -399 -579 -70 -63 -74 -65 -271 -134 -392 -137 -683 -225 -775 -234 -29 -2 -35 1 -38 17 -2 15 12 28 55 52 66 36 152 105 178 144 10 14 50 42 91 63 179 92 496 303 964 640 118 85 219 155 224 155 4 1 6 -5 3 -11z m-2875 -19 c43 -11 98 -54 98 -75 0 -27 -63 -42 -212 -49 l-147 -7 18 47 c16 41 26 52 72 77 56 29 84 31 171 7z m1803 -335 c-59 -53 -210 -160 -280 -198 -56 -30 -50 -26 120 93 66 46 138 99 160 117 58 48 58 41 0 -12z m810 -492 c-101 -99 -171 -153 -282 -218 -54 -32 -103 -64 -109 -71 -22 -26 -606 -215 -795 -257 -126 -28 -155 -32 -127 -16 9 6 33 33 53 60 30 40 38 62 42 108 l5 59 77 12 c147 25 639 182 1076 345 66 24 122 45 125 45 2 1 -27 -30 -65 -67z m-315 -411 c0 -44 -365 -340 -470 -382 -197 -78 -445 -148 -555 -156 -73 -6 -251 16 -360 43 -150 38 -165 44 -181 76 l-16 31 33 -22 c83 -55 118 -65 229 -65 163 0 235 25 695 234 149 68 349 152 445 186 96 34 176 63 178 63 1 1 2 -3 2 -8z"/>
+                    <path
+                        d="M2373 4049 c-11 -24 -43 -115 -72 -202 l-53 -157 -32 28 c-19 16 -56 34 -89 42 -50 12 -62 19 -92 60 -32 44 -128 140 -140 140 -3 0 -2 -38 1 -84 4 -52 3 -85 -3 -89 -17 -11 -106 24 -138 53 -32 30 -67 50 -85 50 -7 0 -5 -7 4 -16 33 -32 67 -104 72 -150 10 -84 -7 -121 -104 -225 l-89 -94 -62 58 c-34 31 -68 57 -74 57 -9 0 -11 -14 -9 -42 l4 -43 -25 23 c-32 30 -82 41 -182 42 l-80 0 44 -42 c24 -24 55 -67 68 -96 22 -51 31 -116 15 -125 -4 -3 -32 5 -62 18 -30 12 -70 26 -89 30 l-33 7 21 -28 c11 -16 34 -66 51 -112 35 -95 38 -161 11 -237 l-18 -50 -79 -27 c-47 -16 -143 -35 -236 -47 -213 -29 -208 -26 -201 -95 3 -31 1 -75 -5 -98 -6 -24 -14 -65 -17 -91 -4 -33 -14 -55 -30 -69 -13 -11 -38 -49 -55 -85 -22 -44 -43 -71 -65 -84 -31 -19 -75 -96 -75 -132 0 -29 44 -68 251 -217 116 -85 215 -163 220 -174 5 -12 13 -48 19 -81 7 -43 16 -64 32 -75 12 -8 45 -34 73 -58 70 -61 186 -129 355 -209 l145 -70 36 -114 c21 -63 53 -148 72 -190 l35 -76 138 -36 c287 -75 350 -81 544 -47 132 23 349 78 431 109 32 12 85 41 120 64 34 23 71 47 82 53 41 25 254 195 289 231 35 36 78 124 78 161 0 10 28 36 65 60 108 73 152 118 199 205 32 58 69 105 123 159 155 153 216 218 210 224 -3 3 -18 -3 -34 -13 -15 -11 -43 -25 -62 -31 -30 -11 -32 -10 -26 6 13 30 17 194 8 264 -8 56 -7 70 8 89 9 12 22 47 29 78 6 31 16 66 21 79 5 13 9 33 9 45 0 12 14 69 30 127 17 58 30 108 30 112 0 17 -23 6 -108 -48 -48 -31 -103 -67 -122 -79 l-35 -22 0 66 c0 64 -20 127 -70 224 -11 20 -15 62 -15 140 0 62 -3 122 -7 135 -5 22 -10 19 -64 -40 l-58 -63 -1 38 c-1 86 -37 175 -85 211 -14 10 -25 28 -25 38 0 49 -26 -1 -80 -150 -53 -150 -93 -232 -112 -232 -5 0 -8 8 -8 18 -2 58 -121 226 -193 271 -38 24 -83 79 -103 126 -8 19 -25 42 -38 50 -13 9 -28 26 -32 38 -5 15 -9 -2 -11 -55 -2 -43 -8 -78 -12 -78 -5 0 -14 14 -21 30 -19 45 -103 116 -161 135 -48 16 -50 18 -44 46 7 32 -11 122 -30 154 -7 11 -16 44 -19 74 -4 30 -14 67 -22 82 -7 15 -14 54 -14 86 0 82 -13 97 -37 42z m56 -507 c16 -256 44 -343 159 -499 l60 -81 -18 -93 c-22 -107 -30 -135 -58 -201 -46 -105 -157 -248 -192 -248 -10 0 -24 -7 -31 -16 -12 -14 -115 -66 -188 -95 -27 -11 -29 -16 42 77 53 69 113 193 127 261 18 83 7 343 -18 458 -11 50 -26 142 -32 205 -15 137 -2 227 56 410 l36 115 23 -63 c18 -49 25 -101 34 -230z m-396 127 c14 -26 45 -89 67 -140 37 -84 41 -100 35 -146 -5 -41 2 -83 34 -212 52 -207 69 -328 52 -367 -25 -56 -130 -120 -229 -138 l-32 -6 31 61 c90 179 94 413 13 864 -14 77 -28 149 -31 160 -4 17 -2 16 14 -5 11 -14 31 -46 46 -71z m-213 -9 c9 -16 8 -20 -5 -20 -8 0 -15 9 -15 20 0 11 2 20 5 20 2 0 9 -9 15 -20z m111 -365 c12 -85 19 -172 16 -200 -5 -48 -85 -251 -94 -241 -5 5 -58 149 -70 189 -3 10 9 49 26 87 33 72 63 197 77 317 7 63 8 65 15 33 4 -19 18 -102 30 -185z m952 -165 c30 -81 31 -92 32 -235 0 -229 0 -228 -108 -338 -90 -91 -191 -174 -332 -273 l-70 -48 77 77 c141 142 217 285 257 483 22 111 41 317 42 468 l0 101 35 -75 c19 -41 49 -113 67 -160z m-1529 174 c4 -16 2 -32 -6 -42 -11 -13 -14 -11 -19 14 -4 16 -7 40 -8 53 -1 19 2 21 13 12 8 -7 17 -23 20 -37z m13 -297 c13 -18 26 -47 29 -65 l7 -32 -72 0 c-39 0 -71 2 -71 4 0 11 72 126 78 126 4 0 17 -15 29 -33z m286 -3 c22 -8 51 -64 83 -160 27 -85 29 -107 11 -123 -19 -15 -27 -4 -27 39 0 31 -5 38 -32 52 -29 14 -34 22 -45 77 -6 34 -21 79 -32 101 l-20 39 22 -10 c12 -5 30 -12 40 -15z m1802 -81 c-37 -166 -89 -275 -205 -432 -33 -45 -60 -85 -60 -90 0 -18 -427 -303 -608 -405 -77 -43 -254 -126 -270 -126 -4 0 53 32 126 70 260 136 437 286 637 540 54 69 105 130 112 137 8 6 22 25 31 42 22 41 246 350 250 346 2 -2 -4 -39 -13 -82z m-1925 -165 c84 -40 92 -48 104 -119 l12 -64 42 -3 c44 -3 52 -12 27 -32 -10 -8 -15 -31 -15 -66 l0 -54 38 0 c40 0 195 31 250 51 17 6 61 26 97 44 l64 32 -17 -30 c-20 -34 -107 -138 -216 -256 -75 -82 -77 -85 -74 -130 l3 -46 72 0 c39 0 69 -2 67 -5 -3 -3 -44 -34 -92 -70 -87 -65 -87 -65 -87 -110 l0 -45 56 0 56 0 -41 -37 c-23 -20 -45 -37 -49 -38 -20 -1 -37 -32 -37 -69 0 -38 2 -41 29 -41 15 0 42 -5 60 -11 25 -9 31 -16 31 -40 0 -27 -2 -29 -41 -29 l-40 0 3 -37 c3 -38 4 -38 53 -44 45 -5 42 -6 -27 -7 l-78 -2 0 -34 c0 -25 6 -38 26 -51 36 -24 21 -33 -66 -41 -41 -4 -78 -11 -81 -17 -4 -5 -39 -15 -78 -21 l-72 -12 -119 52 c-185 81 -295 143 -378 212 -66 54 -79 70 -90 110 -6 26 -11 58 -9 72 2 24 4 23 50 -23 26 -26 47 -54 47 -62 0 -11 13 -15 54 -15 37 0 77 -9 127 -30 77 -31 146 -38 193 -20 21 8 26 16 26 44 0 21 -6 38 -15 44 -14 7 -14 11 0 40 9 17 15 46 13 64 -3 28 -8 33 -48 44 -25 7 -65 20 -89 29 -45 16 -177 16 -323 0 -54 -6 -57 -8 -60 -37 l-3 -30 -204 148 c-222 161 -219 156 -112 170 35 4 58 2 84 -11 20 -9 52 -15 73 -13 39 3 39 4 42 49 2 34 -2 49 -16 62 -22 20 -142 57 -184 57 l-27 0 22 43 c18 34 29 44 62 52 22 5 42 12 45 15 6 7 233 30 296 30 59 0 107 23 162 78 75 76 77 79 82 160 l5 76 125 27 c69 15 127 26 130 25 3 -1 30 -13 60 -28z m2257 -120 c-2 -7 -17 -58 -32 -113 -71 -252 -131 -340 -399 -579 -70 -63 -74 -65 -271 -134 -392 -137 -683 -225 -775 -234 -29 -2 -35 1 -38 17 -2 15 12 28 55 52 66 36 152 105 178 144 10 14 50 42 91 63 179 92 496 303 964 640 118 85 219 155 224 155 4 1 6 -5 3 -11z m-2875 -19 c43 -11 98 -54 98 -75 0 -27 -63 -42 -212 -49 l-147 -7 18 47 c16 41 26 52 72 77 56 29 84 31 171 7z m1803 -335 c-59 -53 -210 -160 -280 -198 -56 -30 -50 -26 120 93 66 46 138 99 160 117 58 48 58 41 0 -12z m810 -492 c-101 -99 -171 -153 -282 -218 -54 -32 -103 -64 -109 -71 -22 -26 -606 -215 -795 -257 -126 -28 -155 -32 -127 -16 9 6 33 33 53 60 30 40 38 62 42 108 l5 59 77 12 c147 25 639 182 1076 345 66 24 122 45 125 45 2 1 -27 -30 -65 -67z m-315 -411 c0 -44 -365 -340 -470 -382 -197 -78 -445 -148 -555 -156 -73 -6 -251 16 -360 43 -150 38 -165 44 -181 76 l-16 31 33 -22 c83 -55 118 -65 229 -65 163 0 235 25 695 234 149 68 349 152 445 186 96 34 176 63 178 63 1 1 2 -3 2 -8z" />
                 </g>
-              
+
                 <!-- 橙色图形 -->
                 <g fill="rgb(255,127,39)">
-                  <path d="M2321 3799 c-58 -188 -80 -292 -81 -384 0 -75 24 -266 45 -360 22 -96 31 -305 16 -376 -22 -107 -98 -238 -206 -356 l-57 -63 56 0 c45 0 76 9 158 46 57 25 112 54 124 65 11 10 27 19 36 19 33 0 144 145 190 248 28 64 56 169 70 266 l11 81 -62 85 c-118 159 -146 245 -162 500 -8 127 -16 180 -34 230 -12 36 -26 83 -29 105 -4 22 -10 46 -15 53 -4 7 -29 -58 -60 -159z"/>
-                  <path d="M1914 3868 c88 -436 119 -659 113 -823 -5 -152 -23 -219 -92 -339 -25 -44 -43 -81 -40 -84 2 -2 44 2 94 11 128 21 227 73 260 135 26 49 6 219 -53 447 -27 105 -31 135 -25 177 8 46 5 59 -32 147 -23 53 -55 121 -72 151 -30 54 -145 210 -154 210 -3 0 -3 -15 1 -32z"/>
-                  <path d="M1753 3773 c21 -63 19 -172 -4 -199 -6 -8 -9 -14 -6 -14 14 0 77 34 77 42 0 16 30 8 40 -12 12 -22 -18 -243 -46 -339 -18 -61 -68 -166 -84 -176 -8 -5 -7 -14 3 -28 20 -31 72 -172 87 -235 7 -30 17 -51 24 -50 14 5 100 177 122 247 22 71 14 217 -24 436 l-28 160 -70 95 c-39 52 -80 103 -91 113 -20 17 -20 17 0 -40z"/>
-                  <path d="M2757 3431 c-4 -35 -7 -103 -7 -150 0 -134 -19 -346 -41 -454 -57 -285 -177 -448 -526 -714 -62 -47 -113 -88 -113 -90 0 -17 151 44 165 67 3 5 14 10 24 10 20 0 274 170 401 268 47 36 126 108 177 159 110 111 108 105 108 363 0 173 0 176 -33 270 -19 52 -60 149 -91 215 l-57 120 -7 -64z"/>
-                  <path d="M1240 3428 c44 -73 66 -164 56 -235 -3 -24 -2 -43 2 -42 4 1 29 26 56 56 l50 54 -12 45 c-15 55 -77 133 -112 140 -14 3 -33 8 -43 11 -16 4 -16 2 3 -29z"/>
-                  <path d="M1447 3383 c-2 -32 -2 -61 2 -66 4 -4 20 6 35 22 30 31 28 48 -12 84 -19 17 -20 17 -25 -40z"/>
-                  <path d="M3261 3193 c-13 -38 -51 -131 -83 -208 -105 -247 -181 -369 -317 -505 -111 -111 -223 -197 -516 -393 -115 -77 -232 -162 -260 -189 l-50 -48 145 65 c442 201 629 353 927 755 53 72 115 265 180 563 10 47 -1 30 -26 -40z"/>
-                  <path d="M3365 2944 c-88 -123 -167 -238 -177 -255 -9 -17 -23 -36 -31 -42 -7 -7 -58 -68 -112 -137 -127 -162 -285 -318 -406 -402 -117 -82 -277 -167 -509 -270 -163 -73 -171 -78 -120 -72 185 21 362 75 533 163 168 87 677 419 677 442 0 5 27 45 60 90 125 168 169 267 213 474 25 118 43 236 36 234 -2 0 -76 -101 -164 -225z"/>
-                  <path d="M1385 3104 c98 -24 107 -29 144 -71 49 -55 70 -100 85 -176 10 -53 15 -61 44 -75 24 -12 32 -22 32 -41 0 -14 3 -42 6 -62 l6 -37 32 19 c18 10 42 30 55 43 22 23 22 24 6 77 -65 208 -78 236 -130 259 -80 36 -171 62 -235 65 -36 3 -56 2 -45 -1z"/>
-                  <path d="M1293 3053 c-11 -15 -39 -62 -61 -103 l-41 -75 122 5 c140 6 139 5 113 92 -20 65 -45 96 -84 104 -24 5 -33 1 -49 -23z"/>
-                  <path d="M1330 2796 l-145 -32 -5 -76 c-5 -81 -7 -84 -82 -160 -55 -55 -103 -78 -162 -78 -63 0 -290 -23 -296 -30 -3 -3 -23 -10 -45 -15 -33 -9 -44 -18 -67 -60 -15 -27 -27 -60 -27 -72 -1 -19 4 -23 32 -23 45 0 166 -36 188 -56 11 -10 19 -23 19 -31 0 -18 -27 -28 -43 -16 -35 28 -78 32 -165 17 -99 -17 -124 -35 -94 -67 19 -21 384 -288 420 -306 16 -8 22 -21 22 -44 0 -18 6 -53 13 -79 23 -88 196 -206 491 -333 112 -48 133 -51 219 -30 18 5 26 0 37 -22 29 -56 114 -152 148 -169 53 -25 211 -16 272 15 25 13 52 29 60 37 8 7 54 18 100 23 122 16 295 60 525 135 328 107 407 135 419 149 6 7 55 39 109 71 54 32 124 78 155 104 69 55 280 260 293 284 9 16 6 16 -28 4 -621 -224 -870 -310 -1082 -372 -139 -41 -341 -87 -349 -80 -1 2 2 14 7 28 8 21 20 26 83 37 110 20 342 89 648 194 151 52 286 99 300 105 32 14 247 212 311 288 66 78 105 147 139 249 32 93 103 355 98 360 -2 2 -122 -82 -268 -186 -542 -389 -831 -581 -1014 -675 -41 -21 -81 -49 -91 -63 -23 -34 -112 -107 -172 -142 -46 -27 -50 -27 -93 -15 -115 34 -192 49 -199 38 -13 -21 -191 -12 -191 10 0 11 25 38 37 38 4 0 35 26 68 56 33 31 70 63 83 71 12 8 22 20 22 25 0 11 -27 8 -124 -12 -59 -12 -86 -4 -71 19 3 7 83 68 176 137 93 69 169 127 169 129 0 1 -39 -10 -87 -25 -116 -37 -211 -48 -219 -26 -7 19 4 33 135 177 139 154 207 256 236 359 7 25 7 24 -26 -6 -62 -57 -163 -116 -262 -154 -27 -10 -202 -50 -219 -50 -21 0 -3 47 41 108 27 37 48 68 47 70 -2 1 -31 -5 -65 -14 -35 -8 -68 -13 -75 -11 -7 3 -16 29 -20 58 -4 29 -11 60 -16 69 -7 13 -168 104 -174 99 0 -1 -66 -16 -146 -33z m-85 -942 c22 -9 59 -21 82 -27 24 -7 43 -15 43 -19 0 -5 0 -14 0 -22 0 -8 -14 -28 -31 -46 -24 -23 -34 -28 -44 -20 -14 12 -191 100 -200 100 -3 0 -22 7 -43 15 -29 13 -34 18 -22 25 24 15 170 11 215 -6z m-219 -47 c45 -50 104 -76 247 -108 105 -23 123 -34 83 -49 -40 -15 -51 -13 -145 24 -104 40 -141 50 -141 36 0 -5 -7 -10 -15 -10 -8 0 -15 7 -15 16 0 9 -28 43 -61 75 l-61 59 34 0 c28 0 42 -8 74 -43z m1087 -141 c9 -5 29 -6 42 -3 30 5 42 -8 25 -28 -15 -18 4 -29 29 -15 24 12 35 -1 26 -31 -4 -11 -1 -27 7 -36 11 -15 11 -16 -4 -10 -22 8 -22 9 2 -41 34 -70 25 -106 -47 -184 -87 -93 -236 -177 -313 -178 -22 0 -45 9 -62 23 -27 21 -128 155 -128 168 0 4 19 6 43 6 51 0 148 21 162 35 7 6 -6 24 -38 54 l-49 44 69 0 c76 0 163 19 223 50 41 21 68 56 53 70 -7 7 -72 -8 -179 -41 -40 -12 -101 -12 -109 1 -4 6 9 10 33 10 38 0 129 25 146 41 5 4 -3 13 -18 20 l-27 13 23 13 c38 21 0 15 -42 -7 -46 -24 -52 -20 -13 6 46 29 105 38 146 20z m164 -247 c-7 -54 -55 -133 -102 -163 -36 -24 -31 -13 19 38 50 52 76 101 76 145 0 17 3 31 6 31 4 0 4 -23 1 -51z m-568 -147 c11 -20 42 -62 69 -92 l49 -55 64 0 c70 1 109 15 176 66 24 18 45 30 47 28 9 -8 -91 -76 -137 -94 -33 -12 -64 -16 -104 -13 -54 5 -60 8 -106 59 -46 51 -111 159 -88 144 6 -3 20 -23 30 -43z"/>
-                  <path d="M2173 1487 c-64 -66 -109 -98 -154 -112 -13 -4 -37 -13 -54 -21 -16 -7 -48 -18 -70 -24 -37 -9 -35 -9 20 -5 102 9 164 33 194 76 28 41 52 52 44 19 -8 -29 -101 -110 -127 -110 -12 0 -28 -6 -34 -12 -15 -15 -205 -18 -237 -5 -12 5 -6 -4 14 -22 42 -37 121 -56 197 -46 39 5 70 18 115 48 34 23 73 48 85 55 28 15 60 59 69 93 5 19 -17 99 -28 99 -1 0 -16 -15 -34 -33z"/>
-                  <path d="M710 2640 c-54 -27 -56 -30 -79 -99 -13 -40 -21 -74 -19 -77 17 -17 345 1 395 22 38 15 51 51 31 90 -19 39 -57 64 -124 80 -90 21 -141 17 -204 -16z"/>
-                  <path d="M3045 1371 c-133 -47 -327 -126 -490 -201 -438 -199 -533 -233 -666 -233 -109 -1 -168 30 -281 145 l-87 89 13 -43 c24 -79 88 -219 105 -227 52 -27 274 -72 441 -90 126 -14 275 14 520 98 197 66 220 79 376 196 182 138 257 215 279 287 8 28 14 52 12 54 -1 1 -101 -33 -222 -75z"/>
+                    <path
+                        d="M2321 3799 c-58 -188 -80 -292 -81 -384 0 -75 24 -266 45 -360 22 -96 31 -305 16 -376 -22 -107 -98 -238 -206 -356 l-57 -63 56 0 c45 0 76 9 158 46 57 25 112 54 124 65 11 10 27 19 36 19 33 0 144 145 190 248 28 64 56 169 70 266 l11 81 -62 85 c-118 159 -146 245 -162 500 -8 127 -16 180 -34 230 -12 36 -26 83 -29 105 -4 22 -10 46 -15 53 -4 7 -29 -58 -60 -159z" />
+                    <path
+                        d="M1914 3868 c88 -436 119 -659 113 -823 -5 -152 -23 -219 -92 -339 -25 -44 -43 -81 -40 -84 2 -2 44 2 94 11 128 21 227 73 260 135 26 49 6 219 -53 447 -27 105 -31 135 -25 177 8 46 5 59 -32 147 -23 53 -55 121 -72 151 -30 54 -145 210 -154 210 -3 0 -3 -15 1 -32z" />
+                    <path
+                        d="M1753 3773 c21 -63 19 -172 -4 -199 -6 -8 -9 -14 -6 -14 14 0 77 34 77 42 0 16 30 8 40 -12 12 -22 -18 -243 -46 -339 -18 -61 -68 -166 -84 -176 -8 -5 -7 -14 3 -28 20 -31 72 -172 87 -235 7 -30 17 -51 24 -50 14 5 100 177 122 247 22 71 14 217 -24 436 l-28 160 -70 95 c-39 52 -80 103 -91 113 -20 17 -20 17 0 -40z" />
+                    <path
+                        d="M2757 3431 c-4 -35 -7 -103 -7 -150 0 -134 -19 -346 -41 -454 -57 -285 -177 -448 -526 -714 -62 -47 -113 -88 -113 -90 0 -17 151 44 165 67 3 5 14 10 24 10 20 0 274 170 401 268 47 36 126 108 177 159 110 111 108 105 108 363 0 173 0 176 -33 270 -19 52 -60 149 -91 215 l-57 120 -7 -64z" />
+                    <path
+                        d="M1240 3428 c44 -73 66 -164 56 -235 -3 -24 -2 -43 2 -42 4 1 29 26 56 56 l50 54 -12 45 c-15 55 -77 133 -112 140 -14 3 -33 8 -43 11 -16 4 -16 2 3 -29z" />
+                    <path
+                        d="M1447 3383 c-2 -32 -2 -61 2 -66 4 -4 20 6 35 22 30 31 28 48 -12 84 -19 17 -20 17 -25 -40z" />
+                    <path
+                        d="M3261 3193 c-13 -38 -51 -131 -83 -208 -105 -247 -181 -369 -317 -505 -111 -111 -223 -197 -516 -393 -115 -77 -232 -162 -260 -189 l-50 -48 145 65 c442 201 629 353 927 755 53 72 115 265 180 563 10 47 -1 30 -26 -40z" />
+                    <path
+                        d="M3365 2944 c-88 -123 -167 -238 -177 -255 -9 -17 -23 -36 -31 -42 -7 -7 -58 -68 -112 -137 -127 -162 -285 -318 -406 -402 -117 -82 -277 -167 -509 -270 -163 -73 -171 -78 -120 -72 185 21 362 75 533 163 168 87 677 419 677 442 0 5 27 45 60 90 125 168 169 267 213 474 25 118 43 236 36 234 -2 0 -76 -101 -164 -225z" />
+                    <path
+                        d="M1385 3104 c98 -24 107 -29 144 -71 49 -55 70 -100 85 -176 10 -53 15 -61 44 -75 24 -12 32 -22 32 -41 0 -14 3 -42 6 -62 l6 -37 32 19 c18 10 42 30 55 43 22 23 22 24 6 77 -65 208 -78 236 -130 259 -80 36 -171 62 -235 65 -36 3 -56 2 -45 -1z" />
+                    <path
+                        d="M1293 3053 c-11 -15 -39 -62 -61 -103 l-41 -75 122 5 c140 6 139 5 113 92 -20 65 -45 96 -84 104 -24 5 -33 1 -49 -23z" />
+                    <path
+                        d="M1330 2796 l-145 -32 -5 -76 c-5 -81 -7 -84 -82 -160 -55 -55 -103 -78 -162 -78 -63 0 -290 -23 -296 -30 -3 -3 -23 -10 -45 -15 -33 -9 -44 -18 -67 -60 -15 -27 -27 -60 -27 -72 -1 -19 4 -23 32 -23 45 0 166 -36 188 -56 11 -10 19 -23 19 -31 0 -18 -27 -28 -43 -16 -35 28 -78 32 -165 17 -99 -17 -124 -35 -94 -67 19 -21 384 -288 420 -306 16 -8 22 -21 22 -44 0 -18 6 -53 13 -79 23 -88 196 -206 491 -333 112 -48 133 -51 219 -30 18 5 26 0 37 -22 29 -56 114 -152 148 -169 53 -25 211 -16 272 15 25 13 52 29 60 37 8 7 54 18 100 23 122 16 295 60 525 135 328 107 407 135 419 149 6 7 55 39 109 71 54 32 124 78 155 104 69 55 280 260 293 284 9 16 6 16 -28 4 -621 -224 -870 -310 -1082 -372 -139 -41 -341 -87 -349 -80 -1 2 2 14 7 28 8 21 20 26 83 37 110 20 342 89 648 194 151 52 286 99 300 105 32 14 247 212 311 288 66 78 105 147 139 249 32 93 103 355 98 360 -2 2 -122 -82 -268 -186 -542 -389 -831 -581 -1014 -675 -41 -21 -81 -49 -91 -63 -23 -34 -112 -107 -172 -142 -46 -27 -50 -27 -93 -15 -115 34 -192 49 -199 38 -13 -21 -191 -12 -191 10 0 11 25 38 37 38 4 0 35 26 68 56 33 31 70 63 83 71 12 8 22 20 22 25 0 11 -27 8 -124 -12 -59 -12 -86 -4 -71 19 3 7 83 68 176 137 93 69 169 127 169 129 0 1 -39 -10 -87 -25 -116 -37 -211 -48 -219 -26 -7 19 4 33 135 177 139 154 207 256 236 359 7 25 7 24 -26 -6 -62 -57 -163 -116 -262 -154 -27 -10 -202 -50 -219 -50 -21 0 -3 47 41 108 27 37 48 68 47 70 -2 1 -31 -5 -65 -14 -35 -8 -68 -13 -75 -11 -7 3 -16 29 -20 58 -4 29 -11 60 -16 69 -7 13 -168 104 -174 99 0 -1 -66 -16 -146 -33z m-85 -942 c22 -9 59 -21 82 -27 24 -7 43 -15 43 -19 0 -5 0 -14 0 -22 0 -8 -14 -28 -31 -46 -24 -23 -34 -28 -44 -20 -14 12 -191 100 -200 100 -3 0 -22 7 -43 15 -29 13 -34 18 -22 25 24 15 170 11 215 -6z m-219 -47 c45 -50 104 -76 247 -108 105 -23 123 -34 83 -49 -40 -15 -51 -13 -145 24 -104 40 -141 50 -141 36 0 -5 -7 -10 -15 -10 -8 0 -15 7 -15 16 0 9 -28 43 -61 75 l-61 59 34 0 c28 0 42 -8 74 -43z m1087 -141 c9 -5 29 -6 42 -3 30 5 42 -8 25 -28 -15 -18 4 -29 29 -15 24 12 35 -1 26 -31 -4 -11 -1 -27 7 -36 11 -15 11 -16 -4 -10 -22 8 -22 9 2 -41 34 -70 25 -106 -47 -184 -87 -93 -236 -177 -313 -178 -22 0 -45 9 -62 23 -27 21 -128 155 -128 168 0 4 19 6 43 6 51 0 148 21 162 35 7 6 -6 24 -38 54 l-49 44 69 0 c76 0 163 19 223 50 41 21 68 56 53 70 -7 7 -72 -8 -179 -41 -40 -12 -101 -12 -109 1 -4 6 9 10 33 10 38 0 129 25 146 41 5 4 -3 13 -18 20 l-27 13 23 13 c38 21 0 15 -42 -7 -46 -24 -52 -20 -13 6 46 29 105 38 146 20z m164 -247 c-7 -54 -55 -133 -102 -163 -36 -24 -31 -13 19 38 50 52 76 101 76 145 0 17 3 31 6 31 4 0 4 -23 1 -51z m-568 -147 c11 -20 42 -62 69 -92 l49 -55 64 0 c70 1 109 15 176 66 24 18 45 30 47 28 9 -8 -91 -76 -137 -94 -33 -12 -64 -16 -104 -13 -54 5 -60 8 -106 59 -46 51 -111 159 -88 144 6 -3 20 -23 30 -43z" />
+                    <path
+                        d="M2173 1487 c-64 -66 -109 -98 -154 -112 -13 -4 -37 -13 -54 -21 -16 -7 -48 -18 -70 -24 -37 -9 -35 -9 20 -5 102 9 164 33 194 76 28 41 52 52 44 19 -8 -29 -101 -110 -127 -110 -12 0 -28 -6 -34 -12 -15 -15 -205 -18 -237 -5 -12 5 -6 -4 14 -22 42 -37 121 -56 197 -46 39 5 70 18 115 48 34 23 73 48 85 55 28 15 60 59 69 93 5 19 -17 99 -28 99 -1 0 -16 -15 -34 -33z" />
+                    <path
+                        d="M710 2640 c-54 -27 -56 -30 -79 -99 -13 -40 -21 -74 -19 -77 17 -17 345 1 395 22 38 15 51 51 31 90 -19 39 -57 64 -124 80 -90 21 -141 17 -204 -16z" />
+                    <path
+                        d="M3045 1371 c-133 -47 -327 -126 -490 -201 -438 -199 -533 -233 -666 -233 -109 -1 -168 30 -281 145 l-87 89 13 -43 c24 -79 88 -219 105 -227 52 -27 274 -72 441 -90 126 -14 275 14 520 98 197 66 220 79 376 196 182 138 257 215 279 287 8 28 14 52 12 54 -1 1 -101 -33 -222 -75z" />
                 </g>
             </svg>
         </div>
-        <a href="https://drive.google.com/uc?export=download&id=1uNdKkg3rGoQ8hjGnxrVeVZ_7ngVmnKsC" style="text-decoration: none;"><b style="color: rgba(6, 247, 231, 0.029); text-shadow: none; ">taoxing-music</b></a>
+        <a href="https://drive.google.com/uc?export=download&id=1uNdKkg3rGoQ8hjGnxrVeVZ_7ngVmnKsC"
+            style="text-decoration: none;"><b
+                style="color: rgba(6, 247, 231, 0.029); text-shadow: none; ">taoxing-music</b></a>
     </footer>
-    
+
     <!-- 粒子背景脚本 -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
@@ -270,41 +386,41 @@
                 }
             }
         });
-        
+
         // 下载按钮动画
         const downloadBtn = document.querySelector('.download-btn');
-        downloadBtn.addEventListener('click', function() {
+        downloadBtn.addEventListener('click', function () {
             this.classList.add('downloading');
             setTimeout(() => {
                 this.classList.remove('downloading');
             }, 1000);
         });
-        
+
         // 汉堡菜单功能
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
-        
+
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('toggle');
             mobileMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
         });
-        
+
         menuOverlay.addEventListener('click', () => {
             hamburger.classList.remove('toggle');
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
         });
-        
+
         // 滚动动画
         const fadeElements = document.querySelectorAll('.fade-in');
-        
+
         const appearOptions = {
             threshold: 0.15,
             rootMargin: "0px 0px -100px 0px"
         };
-        
+
         const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) {
@@ -315,9 +431,27 @@
                 }
             });
         }, appearOptions);
-        
+
         fadeElements.forEach(fader => {
             appearOnScroll.observe(fader);
+        });
+    </script>
+
+    <script>
+        const btn = document.getElementById('rewardBtn');
+        const overlay = document.getElementById('rewardOverlay');
+        const qrImg = overlay.querySelector('img');
+
+        btn.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            // 重置动画
+            qrImg.style.animation = 'none';
+            qrImg.offsetHeight; // 强制重绘
+            qrImg.style.animation = null;
+        });
+
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
         });
     </script>
 
@@ -327,35 +461,7 @@
     <!--最新 dwn 02/08 dwn url exe  >> https://github.com/Huoshi-taoxing/taoxing-music/releases/download/v1.1.0/Taoxing-Music-Launcher.zip -->
     <!--最新 注释 dwn https://www.dropbox.com/scl/fi/2pqu4pz8zdoa5nxsyvh6p/v1.1.0.zip?rlkey=s0ky2cmbxd5jny9vplgi91n44&st=bszjsmay&dl=1-->
     <!--注释 测试版dwn 最新 链接  https://www.dropbox.com/scl/fi/ugc0bdugpa3lzb4leegk4/v1.1.0.zip?rlkey=nn5na1xvc9j413petohdb08a8&st=8yv95rjm&dl=1-->
-    
+
 </body>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
