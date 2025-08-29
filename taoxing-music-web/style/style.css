@@ -1007,7 +1007,7 @@
         .video-container-taoxing-music {
             position: relative;
             width: 80%;
-            max-width: 960px;
+            max-width: 760px;
             background: #000;
             box-shadow: 0 0 20px #00ffff55;
             border: 2px solid #03c1da7e;
@@ -1131,14 +1131,14 @@
         }
 
         ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.619);
+            background: rgba(0, 0, 0, 0.899);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: rgba(5, 247, 255, 0.614);
+            background: rgba(0, 213, 237, 0.395);
             border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(3, 213, 255, 0.678);
+            background: rgba(2, 161, 219, 0.36);
         }
