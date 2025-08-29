@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-<link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/style.css">
     <link rel="icon" type="image/x-icon" href="ico.png">
     <style>
         /* 左上角科技感按钮 */
@@ -88,20 +88,24 @@
         }
 
 
-            /* 视频段落 */
-    .video-section {
-      position: relative;
-        border-top: 2px solid #00d8e7ad;   /* 上分界线 */
-      border-bottom: 2px solid #00d5c39e; /* 下分界线 */
-      background: #000; /* 背景颜色 */
-      overflow: hidden;
-    }
+        /* 视频段落 */
+        .video-section {
+            position: relative;
+            border-top: 2px solid #00d8e7ad;
+            /* 上分界线 */
+            border-bottom: 2px solid #00d5c39e;
+            /* 下分界线 */
+            background: #000;
+            /* 背景颜色 */
+            overflow: hidden;
+        }
 
-    .video-section video {
-      width: 100%; /* 占满整段宽度 */
-      height: auto; 
-      display: block;
-    }
+        .video-section video {
+            width: 100%;
+            /* 占满整段宽度 */
+            height: auto;
+            display: block;
+        }
     </style>
 </head>
 
@@ -113,9 +117,9 @@
     <!-- 装饰性背景元素 -->
     <div class="background-elements" id="background-elements"></div>
 
-    <!-- 粒子背景-->
+    <!-- 粒子背景
     <div id="particles-js"></div> 
-
+-->
     <!-- 顶部导航 -->
     <nav class="navbar">
         <div class="logo">
@@ -123,9 +127,7 @@
         </div>
         <div class="nav-links">
             <a href="#"><i class="fas fa-home"></i> 首页</a>
-            <a
-                href="download/"><i
-                    class="fas fa-download"></i> 前往下载页面</a>
+            <a href="download/"><i class="fas fa-download"></i> 前往下载页面</a>
             <a href="#support">自愿赞赏</a>
             <a href="https://huoshi-taoxing.github.io/"><i class="fas fa-info-circle"></i> 关于 火狮桃星</a>
         </div>
@@ -141,8 +143,7 @@
     <!-- 移动端菜单 -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#"><i class="fas fa-home"></i>首页</a>
-        <a href="download/"><i
-                class="fas fa-download"></i>前往下载页面</a>
+        <a href="download/"><i class="fas fa-download"></i>前往下载页面</a>
         <a href="#support">自愿赞赏</a>
         <a href="https://huoshi-taoxing.github.io/"><i class="fas fa-info-circle"></i>关于 火狮桃星</a>
     </div>
@@ -160,16 +161,15 @@
             <img src="ico.png" class="fade-in"
                 style="max-width: 90px; max-height: 90px; border-radius: 5px; border: solid 2px rgba(6, 184, 224, 0.704); box-shadow: 0 0 20px rgba(5, 203, 234, 0.684);"><br>
             <br><br>
-            <a id="launcher"
-                href="download/">
+            <a id="launcher" href="download/">
                 <button class="download-btn fade-in"> <!--可在class中添加  floating -->
                     <i class="fas fa-download"></i> 前往下载页面
                 </button>
             </a>
 
             <br><br><br>
-              <!-- 视频区块 -->
-  <!--
+            <!-- 视频区块 -->
+            <!--
   <section class="video-section">
   
     <video autoplay muted loop>
@@ -182,33 +182,46 @@
   
   </section>  -->
 
-            
-            
-            <p>视频</p>
-            <br>
 
-            <!--视频-->
-            <div class="video-container-taoxing-music" id="container-taoxing-music">
-                <video id="video-taoxing-music"
-                    src="https://github.com/Huoshi-taoxing/taoxing/releases/download/v1.1.0/default.mp4"
-                    preload="metadata" controlsList="nodownload"
-                    poster="https://raw.githubusercontent.com/Huoshi-taoxing/taoxing-music/refs/heads/main/taoxing-music-web/background/taoxing-music-video-play.jpg"></video>
-
-                <div class="controls-taoxing-music" id="controls-taoxing-music">
-                    <button id="playPause-taoxing-music"><i class="fa-solid fa-play"></i></button>
-                    <input type="range" id="progress-taoxing-music" value="0" min="0" max="100" step="0.1">
-                    <div class="time-taoxing-music" id="timeDisplay-taoxing-music">0:00 / 0:00</div>
-                    <button id="muteUnmute-taoxing-music"><i class="fa-solid fa-volume-up"></i></button>
-                    <button id="fullscreen-taoxing-music"><i class="fa-solid fa-expand"></i></button>
-                </div>
-            </div>
 
             <br>
             <p> 前往 <a href="https://huoshi-taoxing.github.io/" style="text-decoration: none; color: aqua;"> <b>火狮桃星</b>
                 </a> 官网</p>
             <br><br>
 
-
+        <!-- 展示图区域 -->
+        <section class="showcase">
+            <h2 class="fade-in">图片展示</h2>
+            <div class="screenshots">
+                <div class="screenshot fade-in">
+                    <div class="screenshot-img">
+                        <img src="background/taoxing-music-img1.png" alt="桃星音乐界面1">
+                        <div class="screenshot-caption">
+                            <h4>沉浸式播放界面 启动器</h4>
+                            <p>所有所需的按钮功能</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="screenshot fade-in">
+                    <div class="screenshot-img">
+                        <img src="background/taoxing-music-img2.png" alt="桃星音乐界面2">
+                        <div class="screenshot-caption">
+                            <h4>动态壁纸特效</h4>
+                            <p>优雅的播放控制与视觉体验，让音乐与画面完美融合</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="screenshot fade-in">
+                    <div class="screenshot-img">
+                        <img src="background/taoxing-music-img3.png" alt="桃星音乐界面3">
+                        <div class="screenshot-caption">
+                            <h4>多模式音效选择</h4>
+                            <p>高清动漫风景壁纸，随音乐节奏变换视觉效果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
             <!-- 更新内容优化 -->
             <div class="update-highlight fade-in">
@@ -253,7 +266,7 @@
             <p class="fade-in">桃星音乐由火狮团队开发，是一款专注于提供高品质治愈音画的桌面应用。安装包大小：1.5 GB</p>
             <br>
             <p class="fade-in">下载后请解压压缩包，运行"桃星音乐启动器.exe"开始体验。新版本发布将在官网同步更新</p>
-            <br><br>
+
         </section>
         <!-- 功能展示 -->
         <section class="features">
@@ -276,27 +289,24 @@
             </div>
         </section>
 
-        <!-- 展示图区域 -->
-        <section class="showcase">
-            <h2 class="fade-in">功能展示</h2>
-            <div class="screenshots">
-                <div class="screenshot fade-in">
-                    <div class="screenshot-img">
-                        <img src="background/taoxing-music-img1.png" alt="桃星音乐界面1">
-                    </div>
-                </div>
-                <div class="screenshot fade-in">
-                    <div class="screenshot-img">
-                        <img src="background/taoxing-music-img2.png" alt="桃星音乐界面2">
-                    </div>
-                </div>
-                <div class="screenshot fade-in">
-                    <div class="screenshot-img">
-                        <img src="background/taoxing-music-img3.png" alt="桃星音乐界面3">
-                    </div>
+            <p>视频</p>
+            <br>
+
+            <!--视频-->
+            <div class="video-container-taoxing-music" id="container-taoxing-music">
+                <video id="video-taoxing-music"
+                    src="https://github.com/Huoshi-taoxing/taoxing/releases/download/v1.1.0/default.mp4"
+                    preload="metadata" controlsList="nodownload"
+                    poster="https://raw.githubusercontent.com/Huoshi-taoxing/taoxing-music/refs/heads/main/taoxing-music-web/background/taoxing-music-video-play.jpg"></video>
+
+                <div class="controls-taoxing-music" id="controls-taoxing-music">
+                    <button id="playPause-taoxing-music"><i class="fa-solid fa-play"></i></button>
+                    <input type="range" id="progress-taoxing-music" value="0" min="0" max="100" step="0.1">
+                    <div class="time-taoxing-music" id="timeDisplay-taoxing-music">0:00 / 0:00</div>
+                    <button id="muteUnmute-taoxing-music"><i class="fa-solid fa-volume-up"></i></button>
+                    <button id="fullscreen-taoxing-music"><i class="fa-solid fa-expand"></i></button>
                 </div>
             </div>
-        </section>
     </div>
 
     <div id="rewardOverlay">
@@ -364,10 +374,11 @@
                 style="color: rgba(6, 247, 231, 0.029); text-shadow: none; ">taoxing-music</b></a>
     </footer>
 
-    <!-- 粒子背景脚本 -->
+    <!-- 粒子背景脚本 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // 粒子背景配置
+    
+    
+            // 粒子背景配置 
         particlesJS('particles-js', {
             particles: {
                 number: { value: 100, density: { enable: true, value_area: 800 } },
@@ -401,6 +412,10 @@
                 }
             }
         });
+    
+    -->
+    <script>
+
 
         // 下载按钮动画
         const downloadBtn = document.querySelector('.download-btn');
@@ -480,22 +495,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
