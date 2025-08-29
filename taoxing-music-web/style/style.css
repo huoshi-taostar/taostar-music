@@ -51,7 +51,7 @@
 
         body {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.45) 100%),
-            url('https://huoshi-taoxing.github.io/taoxing/background/wallpaper_landscape02.png');
+                url('https://huoshi-taoxing.github.io/taoxing/background/wallpaper_landscape02.png');
             background-blend-mode: multiply;
             background-size: cover;
             background-position: center;
@@ -139,14 +139,14 @@
             opacity: 0.15;
         }
 
-        /* 粒子背景效果 */
+        /* 粒子背景效果
         #particles-js {
             position: absolute;
             width: 100%;
             height: 100%;
             z-index: -1;
             opacity: 0.5;
-        }
+        } */
 
         /* 顶部导航 */
         .navbar {
@@ -492,56 +492,82 @@
         }
 
         /* 展示图区域 */
+        /* 高级展示图区域样式 */
         .showcase {
             text-align: center;
             margin-bottom: 80px;
-        }
-
-        .showcase h2 {
-            font-size: 2.8rem;
-            margin-bottom: 60px;
-            color: var(--primary);
             position: relative;
-            display: inline-block;
-            font-weight: 700;
         }
 
-        .showcase h2::after {
+        .showcase::before {
             content: '';
             position: absolute;
-            bottom: -15px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #00d7e6, #0199c7);
-            border-radius: 2px;
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
         }
 
         .screenshots {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: flex-start;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 30px;
             padding: 20px;
+            perspective: 1000px;
         }
 
         .screenshot {
-            width: 100%;
-            max-width: 680px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
             height: 420px;
-            background: linear-gradient(145deg, #00000064, #14141483);
-            border-radius: 20px;
+            background: linear-gradient(145deg, #0a1529, #051225);
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             position: relative;
-            border: 2px solid rgba(5, 234, 219, 0.548);
-            transition: var(--transition);
+            border: 1px solid rgba(5, 234, 219, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        .screenshot::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                    rgba(0, 230, 204, 0.1),
+                    rgba(0, 230, 204, 0.05),
+                    transparent 40%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .screenshot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg,
+                    #00d7e6,
+                    #0199c7,
+                    #00d7e6);
+            z-index: 3;
+            border-radius: 8px 8px 0 0;
+            opacity: 0.8;
         }
 
         .screenshot:hover {
-            transform: scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(-12px) rotateX(2deg);
+            box-shadow: 0 25px 50px rgba(0, 230, 204, 0.25),
+                inset 0 0 80px rgba(0, 230, 204, 0.05);
+            border-color: rgba(0, 230, 211, 0.3);
         }
 
         .screenshot-img {
@@ -553,17 +579,100 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
+        }
+
+        .screenshot-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    rgba(10, 15, 35, 0.2),
+                    rgba(10, 15, 35, 0.7));
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .screenshot:hover .screenshot-img::before {
+            opacity: 1;
         }
 
         .screenshot-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: all 0.5s ease;
         }
 
         .screenshot:hover .screenshot-img img {
-            transform: scale(1.05);
+            transform: scale(1.08);
+        }
+
+        /* 添加图片标题效果 */
+        .screenshot-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 20px 20px;
+            background: linear-gradient(to top,
+                    rgba(5, 15, 30, 0.95),
+                    transparent);
+            color: white;
+            z-index: 3;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            text-align: left;
+        }
+
+        .screenshot:hover .screenshot-caption {
+            transform: translateY(0);
+        }
+
+        .screenshot-caption h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .screenshot-caption p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease 0.1s;
+        }
+
+        .screenshot:hover .screenshot-caption p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 1100px) {
+            .screenshots {
+                justify-content: center;
+            }
+
+            .screenshot {
+                min-width: 280px;
+                max-width: 320px;
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .screenshot {
+                min-width: 100%;
+                max-width: 100%;
+                height: 320px;
+            }
         }
 
         /* 底部区域 */
