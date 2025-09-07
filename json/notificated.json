@@ -1,17 +1,17 @@
 {
   "消息": [
     {
-      "title": "桃星音乐 最新版本 更新 v1.2.8.0，核心版本 v6.3.0 ",
+      "title": "桃星音乐 最新版本 更新 v1.2.8.5，核心版本 v6.3.5 ",
       "title_font": {"size": 16, "color": "#00ffff"},
-      "content": "以下是 新内容",
+      "content": "以下是更新内容：",
       "content_font": {"size": 11, "color": "#ccccff"},
       "images": [""],
       "spacer": 1
     },
     {
-      "title": "最新版本：v1.2.8.0 和 核心版本 v6.3.0",
+      "title": "最新版本：v1.2.8.5 和 核心版本 v6.3.5",
       "title_font": {"size": 15, "color": "#00ffcc"},
-      "content": "App化，全自动化安装，无需手动安装额外文件，如果您还未下载最新版本，请 前往 桃星音乐 官网",
+      "content": "App化，全自动化安装，无需手动安装额外文件，如果您还未下载最新版本，请 前往 桃星音乐 官网，对 桃星音乐核心版本 Particle 例子大小 调整 为 更大些。",
       "content_font": {"size": 11, "color": "#ccccff"},
       "images": [""],
       "spacer": 2
@@ -21,7 +21,7 @@
     {
       "title": "安全提醒",
       "title_font": {"size": 14, "color": "#ffcc00"},
-      "content": "测试 测试 测试",
+      "content": "注意！唯一官网域名为 huoshi-taoxing.github.io 为准，如进入和该域名不一致的情况，请勿安装。",
       "content_font": {"size": 11, "color": "#ffffff"},
       "images": ["images/security.png"],
       "spacer": 1
