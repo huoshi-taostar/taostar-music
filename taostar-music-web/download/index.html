@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="下载 桃星音乐 欣赏纯音乐和动漫风景壁纸、助眠声音、自然音效与治愈体验，是一个让你放松心灵的音乐平台。">
+    <meta name="keywords" content="桃星音乐, 助眠音乐, Taostar music, huoshi">
+    <meta name="author" content="火狮桃星">
+    <title>桃星音乐 下载</title>
+    <link href="taostar-styles.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="ico.png">
+    <!--
+
+火狮桃星 HUOSHI
+-->
+
+    <!-- License: PD. Made by Mary Akveo: https://maryakveo.com/ 
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="music" data-name="Line Color"
+                    xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+                    <path id="secondary" d="M15,8H12v6"
+                        style="fill: none; stroke: rgb(44, 169, 188); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                    </path>
+                    <circle id="secondary-2" data-name="secondary" cx="10" cy="14" r="2"
+                        style="fill: none; stroke: rgb(44, 169, 188); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                    </circle>
+                    <circle id="primary" cx="12" cy="12" r="9"
+                        style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                    </circle>
+                </svg>-->
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <a href="#home" class="logo-container">
+            <div class="logo">
+                <?xml version="1.0" encoding="utf-8"?>
+                <img src="ico.png" class="fade-in appear"
+                    style="max-width: 90px; max-height: 43px; border-radius: 5px; border: solid 2px rgba(6, 184, 224, 0.405); box-shadow: 0 0 20px rgba(5, 204, 234, 0.345);">
+            </div>
+            <div class="logo-text">桃星音乐</div>
+        </a>
+
+        <nav class="main-menu" id="mainMenu">
+            <a href="#home" class="menu-item active">主页面</a>
+            <a href="#about" class="menu-item">关于 - 下载</a>
+            <a href="#contact" class="menu-item">联系</a>
+            <a href="https://huoshi-taostar.github.io/" target="_blank" rel="noopener noreferrer"
+                class="menu-item external">火狮桃星</a>
+        </nav>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="coverflow-wrapper">
+            <div class="info">
+                <h2 id="current-title">桃星音乐</h2>
+                <p id="current-description">风景壁纸欣赏</p>
+            </div>
+
+            <div class="coverflow-container" tabindex="0">
+                <div class="coverflow" id="coverflow">
+                    <div class="coverflow-item" data-index="0">
+                        <div class="cover image-loading">
+                            <img src="images/taostar-music-1.png" alt="IMG 1 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="1">
+                        <div class="cover image-loading">
+                            <img src="images/taostar-music-2.png" alt="IMG 2 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="2">
+                        <div class="cover image-loading">
+                            <img src="images/taostar-music-3.png" alt="IMG 3 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="3">
+                        <div class="cover image-loading">
+                            <img src="images/taostar-music-4.png" alt="IMG 4 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="4">
+                        <div class="cover image-loading">
+                            <img src="images/taostar-music-5.png" alt="IMG 5 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="5">
+                        <div class="cover image-loading">
+                            <img src="images/taostar-music-6.png" alt="Starry Night" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="6">
+                        <div class="cover image-loading">
+                            <img src="images/taostar-music-7.png" alt="Waterfall" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                </div>
+
+                <button class="nav-button prev" onclick="navigate(-1)">‹</button>
+                <button class="nav-button next" onclick="navigate(1)">›</button>
+
+                <div class="dots-container" id="dots"></div>
+
+                <!-- Play/Pause Button -->
+                <button class="play-pause-button" id="playPauseBtn" onclick="toggleAutoplay()">
+                    <span class="play-icon">▶</span>
+                    <span class="pause-icon" style="display: none;">❚❚</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about-content">
+            <div class="about-header">
+                <h2>桃星音乐 <br> Taostar Music </h2>
+                <p>治愈助眠音乐软件</p>
+            </div>
+
+            <div class="about-main">
+                <div class="about-visual">
+                    <div class="showcase-display">
+                        <div class="showcase-main">
+                            <div class="corner-decoration top-left"></div>
+                            <div class="corner-decoration bottom-right"></div>
+
+                            <div class="showcase-logo">
+
+                                <img src="ico.png" class="fade-in appear"
+                                    style="max-width: 90px; max-height: 90px; border-radius: 5px; border: solid 2px rgba(6, 184, 224, 0.704); box-shadow: 0 0 20px rgba(5, 203, 234, 0.684);">
+                            </div>
+
+                            <h3 class="showcase-title">桃星音乐</h3>
+                            <p class="showcase-subtitle">
+                            </p>
+
+                            <div class="showcase-badges">
+                                <a href="https://huoshi-taostar.github.io/taostar-music-web/"
+                                    target="_blank" rel="noopener noreferrer" class="badge">桃星音乐</a>
+                                <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">GitHub</a>
+                                <a href="https://huoshi-taostar.github.io/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">HUOSHI</a>
+                                <a href="https://react.dev/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">React</a>
+                                <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">Node.js</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-info">
+                    <h3>治愈动漫风景壁纸</h3>
+                    <p>高质量动漫风景壁纸，多种风格满足不同审美需求。</p>
+                    <p>精选高清治愈系动漫风景壁纸，涵盖唯美、清新、梦幻等多种风格，让您在视觉上获得放松与愉悦体验。</p>
+
+                    <ul class="feature-list">
+                        <li>收录高质量治愈系动漫风景壁纸，满足多样化审美需求</li>
+                        <li>支持不同风格的壁纸切换，让视觉体验更沉浸</li>
+                        <li>搭配助眠音效，带来更加放松与舒适的氛围</li>
+                        <li>助眠音效包含雨声、海浪、雨中打伞、微风等自然声音</li>
+                        <li>在畅玩大型游戏的同时播放桃星音乐，系统依然保持流畅</li>
+                    </ul>
+
+                    <p>桃星音乐 = 1.8 GB - 启动器版本: v1.2.8.6 - 核心版本: v6.3.2 </p>
+                    <b style="color: rgba(0, 214, 221, 0.793);"> 仅支持 Windows 10/11 </b> <br>
+                    <svg width="50px" height="50px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M10,12.974l8.582-1.166v8.253L10,20.109Zm8.577,8.037.008,8.261L10.006,28.1V20.96Zm1.041-9.355L31,10v9.956l-11.379.089ZM31,21.089V31L19.618,29.4,19.6,21.07Z"
+                            style="fill:#0078d6" />
+                    </svg>
+
+                    <br><br>
+                    <a href="https://github.com/Huoshi-tahuoshi-taostar-music/releases/download/v1.2.8.6.0/Taostar-Music-Installer.exe"
+                        class="cta-button">
+                        开始下载 桃星音乐 安装器.exe
+                        <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="download"
+                            data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+                            <path id="secondary"
+                                d="M5.65,10.56,7,9a1,1,0,0,1,1.41-.11L10,10.34V3h4v7.34l1.64-1.41A1,1,0,0,1,17.05,9l1.3,1.52A1,1,0,0,1,18.24,12l-5.59,4.79a1,1,0,0,1-1.3,0L5.76,12A1,1,0,0,1,5.65,10.56Z"
+                                style="fill: rgb(44, 169, 188); stroke-width: 2;"></path>
+                            <path id="primary" d="M20,17v3a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V17"
+                                style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                            </path>
+                            <path id="primary-2" data-name="primary"
+                                d="M5.65,10.56,7,9a1,1,0,0,1,1.41-.11L10,10.34V3h4v7.34l1.64-1.41A1,1,0,0,1,17.05,9l1.3,1.52A1,1,0,0,1,18.24,12l-5.59,4.79a1,1,0,0,1-1.3,0L5.76,12A1,1,0,0,1,5.65,10.56Z"
+                                style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                            </path>
+                        </svg>
+                    </a><br><br>
+                    <b style="color: rgba(255, 255, 255, 0.793);">电脑没有音乐 需要下载音乐? 点击 下载 >> <a href="#music-files-taostar" class="footer-dwn"
+                            style="text-decoration: none;"> 音乐库</a> </b>
+                </div>
+
+            </div>
+
+            <br> <br>
+            <center>
+                <h1 style="color: rgba(0, 234, 255, 0.858);"> 火狮桃星 HUOSHI Taostar</h1>
+            </center>
+            <br>
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">探索未知的勇气</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">⬆</div>
+                    <div class="stat-label">持续创新与突破</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">★</div>
+                    <div class="stat-label">研究与探索未知</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">科技发明创造无限可能</div>
+                </div>
+            </div>
+
+            <br><br><br><br>
+            <p>手动下载并解压 ZIP 压缩包，旧版本 - 不推荐</p><br>>>
+            <a class="footer-dwn" id="launcher"
+                href="https://github.com/Huoshi-tahuoshi-taostar-music/releases/download/v1.2.60-tahuoshi-taostar-Music-Launcher-New.zip"
+                title="download 下载 zip">
+                <b> 下载压缩文件夹</b>
+            </a>
+
+            <br>
+            <hr id="music-files-taostar" style="border:none;height:2px;background:#8c8c8c9a;margin:8px 0;">
+            <br>
+            <p>b站</p><br>>>
+            <a class="footer-dwn" id="launcher" href="https://space.bilibili.com/3546720468207796" title="访问 火狮桃星 b站">
+                <b>访问</b>
+            </a>
+
+            <br>
+            <hr style="border:none;height:2px;background:#8c8c8c9a;margin:8px 0;">
+            <br>
+            <p>桃星音乐 视频 4K</p><br>>>
+            <a class="footer-dwn" id="launcher"
+                href="https://github.com/Huoshi-tahuoshi-taostar/huoshi-taostar.github.io/releases/download/v1.0.0/taostar-music-vid.mp4"
+                title="download MP4 video taostar-music">
+                <b>下载MP4文件</b>
+            </a>
+
+            <br>
+            <hr style="border:none;height:2px;background:#8c8c8c9a;margin:8px 0;">
+            <br>
+            <p style="color: rgba(0, 255, 251, 0.837);">你没有在电脑上下载音乐? 立即下载 音乐库 随便将音乐上传到 桃星音乐。音乐库 拥有 20 首好听的音乐。</p><br>>>
+            <a class="footer-dwn" id="launcher"
+                href="https://github.com/Huoshi-tahuoshi-taostar/huoshi-taostar.github.io/releases/download/v1.0.0/taostar-music-vid.mp4"
+                title="下载 音乐库">
+                <b>下载 音乐库</b>
+            </a>
+
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="contact-content">
+            <div class="contact-header">
+                <h2>保持联系</h2>
+                <p>有任何想法或建议，欢迎随时与我们沟通。我们重视每一条反馈，并期待与您交流。</p>
+
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info-section">
+                    <h3>联系我们</h3>
+                    <p>我们欢迎您的意见与反馈，任何想法、建议或疑问都将得到认真倾听与回应。您的声音对我们持续改进和优化体验至关重要。</p>
+
+
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>huoshi.h.s.t@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg fill="#000000" width="800px" height="800px" viewBox="0 -32 576 576"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <title>web</title>
+                                    <path
+                                        d="M288 32Q350 32 402 63 453 93 483 145 512 196 512 256 512 318 482 370 451 421 400 451 348 480 288 480 226 480 175 450 123 419 94 368 64 316 64 256 64 194 95 143 125 91 177 62 228 32 288 32ZM272 83Q235 95 218 151 245 158 272 160L272 83ZM304 160Q331 158 358 151 341 95 304 83L304 160ZM367 98Q380 118 387 141 403 133 411 128 392 111 367 98ZM189 141Q197 117 209 98 185 110 166 129L189 141ZM463 240Q460 193 432 153 412 166 396 172 403 205 404 240L463 240ZM180 172Q165 166 145 153 118 191 113 240L172 240Q173 205 180 172ZM272 192Q238 189 210 182 205 208 204 240L272 240 272 192ZM372 240Q371 208 366 182 338 189 304 192L304 240 372 240ZM113 272Q118 321 145 359 159 349 180 340 173 307 172 272L113 272ZM204 272Q205 304 210 330 238 323 272 320L272 272 204 272ZM304 320Q338 323 366 330 371 304 372 272L304 272 304 320ZM396 340Q411 346 431 359 458 321 463 272L404 272Q403 307 396 340ZM304 429Q341 417 358 361 331 354 304 352L304 429ZM272 352Q245 354 218 361 235 417 272 429L272 352ZM189 371Q176 376 166 383 185 401 208 413 195 391 189 371ZM387 371Q380 394 367 413 390 403 410 383L387 371Z" />
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <h4>主官网</h4>
+                                <p><a href="https://huoshi-taostar.github.io/"
+                                        style="text-decoration: none; color: rgb(205, 205, 205);">
+                                        https://huoshi-taostar.github.io/ </a></p>
+                            </div>
+                        </div>
+
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32"
+                                    enable-background="new 0 0 32 32" xml:space="preserve">
+                                    <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="12"
+                                        y1="16" x2="27" y2="16" />
+                                    <rect x="5" y="14" fill="none" stroke="#000000" stroke-width="2"
+                                        stroke-miterlimit="10" width="4" height="4" />
+                                    <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="12"
+                                        y1="8" x2="27" y2="8" />
+                                    <rect x="5" y="6" fill="none" stroke="#000000" stroke-width="2"
+                                        stroke-miterlimit="10" width="4" height="4" />
+                                    <line fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" x1="12"
+                                        y1="24" x2="27" y2="24" />
+                                    <rect x="5" y="22" fill="none" stroke="#000000" stroke-width="2"
+                                        stroke-miterlimit="10" width="4" height="4" />
+                                </svg>
+                            </div>
+                            <div class="contact-text">
+                                <h4>更新日志 Change Log</h4>
+                                <p> 点击 >>> <b><a
+                                            href="https://huoshi-taostar.github.io-tahuoshi-taostar-music-tahuoshi-taostar-music-web/update-list.htm?huoshi-taostar-music+update-list-changelog~huoshitaostar~bnry=01101000+01110100+00101101+01101000+01110011"
+                                            style="text-decoration: none; color: rgb(157, 157, 157);"> 更新日志</a> </p></b>
+                            </div>
+                        </div>
+                        <button title="支持 桃星音乐" id="rewardBtn"><i id="support"> 赞赏 </i> </button>
+                    </div>
+
+                    <div class="social-links">
+                        <h4>订阅 支持</h4>
+                        <div class="social-buttons">
+                            <a href="https://www.douyin.com/user/MS4wLjABAAAACijCHXWkdAit63xNKQJqV1v_SikFaSv361RJzIktzAX15pBKLOT65qZe7-A-wpHX?from_tab_name=main"
+                                class="social-btn" title="Tik Tok 抖音">
+                                <svg width="512px" height="512px" viewBox="0 0 512 512" id="icons"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M412.19,118.66a109.27,109.27,0,0,1-9.45-5.5,132.87,132.87,0,0,1-24.27-20.62c-18.1-20.71-24.86-41.72-27.35-56.43h.1C349.14,23.9,350,16,350.13,16H267.69V334.78c0,4.28,0,8.51-.18,12.69,0,.52-.05,1-.08,1.56,0,.23,0,.47-.05.71,0,.06,0,.12,0,.18a70,70,0,0,1-35.22,55.56,68.8,68.8,0,0,1-34.11,9c-38.41,0-69.54-31.32-69.54-70s31.13-70,69.54-70a68.9,68.9,0,0,1,21.41,3.39l.1-83.94a153.14,153.14,0,0,0-118,34.52,161.79,161.79,0,0,0-35.3,43.53c-3.48,6-16.61,30.11-18.2,69.24-1,22.21,5.67,45.22,8.85,54.73v.2c2,5.6,9.75,24.71,22.38,40.82A167.53,167.53,0,0,0,115,470.66v-.2l.2.2C155.11,497.78,199.36,496,199.36,496c7.66-.31,33.32,0,62.46-13.81,32.32-15.31,50.72-38.12,50.72-38.12a158.46,158.46,0,0,0,27.64-45.93c7.46-19.61,9.95-43.13,9.95-52.53V176.49c1,.6,14.32,9.41,14.32,9.41s19.19,12.3,49.13,20.31c21.48,5.7,50.42,6.9,50.42,6.9V131.27C453.86,132.37,433.27,129.17,412.19,118.66Z" />
+                                </svg>
+                            </a>
+                            <a href="#" class="social-btn" title="Twitter">
+                                <svg width="1200" height="1227" viewBox="0 0 1200 1227" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"
+                                        fill="white" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                © 2025 火狮桃星. All rights reserved. 保留所有版权. Todos los derechos reservados. | 网页结构提供 <a
+                    href="https://templatemo.com" target="_blank" rel="noopener noreferrer">TemplateMo</a> | 本 网页代码 由
+                火狮桃星 重新修改设计。| 如需了解更多关于 火狮团队 火狮桃星 可点击 ><a href="https://huoshi-taostar.github.io/huoshi-taostar.html"
+                    target="_blank" rel="noopener noreferrer">了解更多</a>
+            </div>
+            <div class="footer-links">
+                <a href="隐私政策Privacy Policy.pdf">Privacy
+                    Policy</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <div id="rewardOverlay">
+        <img src="data:image/png;base64,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"
+            alt="赞赏二维码">
+    </div>
+
+
+
+    <!-- Scroll to top button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <span>↑</span>
+    </div>
+
+    <script src="taostar-scripts.js"></script>
+
+    <script>
+        const btn = document.getElementById('rewardBtn');
+        const overlay = document.getElementById('rewardOverlay');
+        const qrImg = overlay.querySelector('img');
+
+        btn.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            // 重置动画
+            qrImg.style.animation = 'none';
+            qrImg.offsetHeight; // 强制重绘
+            qrImg.style.animation = null;
+        });
+
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
+    </script>
+
+
+</body>
+
+
+</html>
+
+
+
+
+
+
