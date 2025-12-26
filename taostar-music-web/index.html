@@ -110,6 +110,9 @@
 </head>
 
 <body>
+
+<button id="musicToggle">🔊 音乐：开启</button>
+
     <div class="huojian01" id="huojian01Btn">
         <img src="huojian.png" alt="Scroll to Top">
     </div>
@@ -493,7 +496,62 @@
     <!--最新 dwn 02/08 dwn url exe  >> https://github.com/Huoshi-taostar/taostar-music/releases/download/v1.1.0/Taoxing-Music-Launcher.zip -->
     <!--最新 注释 dwn https://www.dropbox.com/scl/fi/2pqu4pz8zdoa5nxsyvh6p/v1.1.0.zip?rlkey=s0ky2cmbxd5jny9vplgi91n44&st=bszjsmay&dl=1-->
     <!--注释 测试版dwn 最新 链接  https://www.dropbox.com/scl/fi/ugc0bdugpa3lzb4leegk4/v1.1.0.zip?rlkey=nn5na1xvc9j413petohdb08a8&st=8yv95rjm&dl=1-->
+
+<script>
+const musicUrl = "https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v0.01/Unchanged.Mind.m4a";
+
+const audio = new Audio(musicUrl);
+audio.loop = true;
+audio.volume = 0.6;
+
+let hasStarted = false;
+let isPlaying = false;
+
+const toggleBtn = document.getElementById("musicToggle");
+
+// 用户首次交互后自动播放
+function startMusicOnce() {
+    if (!hasStarted) {
+        audio.play().then(() => {
+            hasStarted = true;
+            isPlaying = true;
+            toggleBtn.textContent = "🔊 音乐：开启";
+        }).catch(() => {
+            // 防止某些浏览器拦截
+        });
+
+        document.removeEventListener("click", startMusicOnce);
+        document.removeEventListener("touchstart", startMusicOnce);
+        document.removeEventListener("scroll", startMusicOnce);
+    }
+}
+
+// 监听任意用户行为
+document.addEventListener("click", startMusicOnce);
+document.addEventListener("touchstart", startMusicOnce);
+document.addEventListener("scroll", startMusicOnce);
+
+// 按钮控制开关
+toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // 防止触发页面点击
+
+    if (isPlaying) {
+        audio.pause();
+        toggleBtn.textContent = "🔇 音乐：关闭";
+    } else {
+        audio.play();
+        toggleBtn.textContent = "🔊 音乐：开启";
+    }
+
+    isPlaying = !isPlaying;
+});
+</script>
+
+
 <script>alert ("重要通知！桃星音乐 火狮工作室 - 火狮团队 至 2025年11月01日起 到 2026年2月底内暂时停止更新与维护软件。")</script>
+
+
+
 
 </body>
 
