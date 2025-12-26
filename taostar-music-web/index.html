@@ -110,7 +110,6 @@
 </head>
 
 <body>
-
 <button id="musicToggle">🔊 音乐：开启</button>
 
     <div class="huojian01" id="huojian01Btn">
@@ -497,6 +496,27 @@
     <!--最新 注释 dwn https://www.dropbox.com/scl/fi/2pqu4pz8zdoa5nxsyvh6p/v1.1.0.zip?rlkey=s0ky2cmbxd5jny9vplgi91n44&st=bszjsmay&dl=1-->
     <!--注释 测试版dwn 最新 链接  https://www.dropbox.com/scl/fi/ugc0bdugpa3lzb4leegk4/v1.1.0.zip?rlkey=nn5na1xvc9j413petohdb08a8&st=8yv95rjm&dl=1-->
 
+
+<style>
+#musicToggle {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 99999;
+
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+
+    background: rgba(0, 0, 0, 0.6);
+    color: #00eaff;
+    font-size: 14px;
+
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
+</style>
+
 <script>
 const musicUrl = "https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v0.01/Unchanged.Mind.m4a";
 
@@ -504,46 +524,37 @@ const audio = new Audio(musicUrl);
 audio.loop = true;
 audio.volume = 0.6;
 
-let hasStarted = false;
-let isPlaying = false;
+let started = false;
+let playing = false;
 
-const toggleBtn = document.getElementById("musicToggle");
+const btn = document.getElementById("musicToggle");
 
-// 用户首次交互后自动播放
-function startMusicOnce() {
-    if (!hasStarted) {
+// 点击网页任意地方 → 自动播放（仅一次）
+document.addEventListener("click", function autoPlay() {
+    if (!started) {
         audio.play().then(() => {
-            hasStarted = true;
-            isPlaying = true;
-            toggleBtn.textContent = "🔊 音乐：开启";
-        }).catch(() => {
-            // 防止某些浏览器拦截
-        });
+            started = true;
+            playing = true;
+            btn.textContent = "🔊 音乐：开启";
+        }).catch(() => {});
 
-        document.removeEventListener("click", startMusicOnce);
-        document.removeEventListener("touchstart", startMusicOnce);
-        document.removeEventListener("scroll", startMusicOnce);
+        document.removeEventListener("click", autoPlay);
     }
-}
+});
 
-// 监听任意用户行为
-document.addEventListener("click", startMusicOnce);
-document.addEventListener("touchstart", startMusicOnce);
-document.addEventListener("scroll", startMusicOnce);
+// 左下角按钮：开 / 关
+btn.addEventListener("click", function (e) {
+    e.stopPropagation(); // ❗非常关键，防止触发页面点击
 
-// 按钮控制开关
-toggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // 防止触发页面点击
-
-    if (isPlaying) {
+    if (playing) {
         audio.pause();
-        toggleBtn.textContent = "🔇 音乐：关闭";
+        btn.textContent = "🔇 音乐：关闭";
     } else {
         audio.play();
-        toggleBtn.textContent = "🔊 音乐：开启";
+        btn.textContent = "🔊 音乐：开启";
     }
 
-    isPlaying = !isPlaying;
+    playing = !playing;
 });
 </script>
 
