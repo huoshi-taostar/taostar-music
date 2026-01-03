@@ -106,6 +106,56 @@
             height: auto;
             display: block;
         }
+
+
+
+
+
+
+
+
+  /* 全屏弹窗遮罩 */
+  #musicPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* 透明黑色背景 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+
+  /* 弹窗主体 */
+  #musicPopupContent {
+    border: 2px solid #00FFFF; /* 青蓝色边框 */
+    padding: 30px 50px;
+    text-align: center;
+    color: #00FFFF; /* 青蓝色字体 */
+    background: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+    border-radius: 10px;
+    font-family: sans-serif;
+  }
+
+  /* 按钮样式 */
+  #musicPopupContent button {
+    margin: 10px;
+    padding: 10px 25px;
+    font-size: 16px;
+    border: 2px solid #00FFFF;
+    background: transparent;
+    color: #00FFFF;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.2s;
+  }
+
+  #musicPopupContent button:hover {
+    background: #00FFFF;
+    color: #000;
+  }
     </style>
 </head>
 
@@ -517,45 +567,41 @@
 }
 </style>
 
+
+
+<!-- 弹窗结构 -->
+<div id="musicPopup">
+  <div id="musicPopupContent">
+    <p>是否要开启背景音乐？</p>
+    <button id="yesBtn">是</button>
+    <button id="noBtn">否</button>
+  </div>
+</div>
+
+<!-- 背景音乐 -->
+<audio id="bgMusic" src="https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v0.01/Unchanged.Mind.m4a" loop></audio>
+
 <script>
-const musicUrl = "https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v0.01/Unchanged.Mind.m4a";
+  const popup = document.getElementById('musicPopup');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const bgMusic = document.getElementById('bgMusic');
 
-const audio = new Audio(musicUrl);
-audio.loop = true;
-audio.volume = 0.6;
+  yesBtn.addEventListener('click', () => {
+    bgMusic.play(); // 开启音乐
+    popup.style.display = 'none'; // 隐藏弹窗
+  });
 
-let started = false;
-let playing = false;
+  noBtn.addEventListener('click', () => {
+    popup.style.display = 'none'; // 隐藏弹窗
+  });
 
-const btn = document.getElementById("musicToggle");
-
-// 点击网页任意地方 → 自动播放（仅一次）
-document.addEventListener("click", function autoPlay() {
-    if (!started) {
-        audio.play().then(() => {
-            started = true;
-            playing = true;
-            btn.textContent = "🔊 音乐：开启";
-        }).catch(() => {});
-
-        document.removeEventListener("click", autoPlay);
+  // 可选：用户点击遮罩外部也关闭弹窗
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
     }
-});
-
-// 左下角按钮：开 / 关
-btn.addEventListener("click", function (e) {
-    e.stopPropagation(); // ❗非常关键，防止触发页面点击
-
-    if (playing) {
-        audio.pause();
-        btn.textContent = "🔇 音乐：关闭";
-    } else {
-        audio.play();
-        btn.textContent = "🔊 音乐：开启";
-    }
-
-    playing = !playing;
-});
+  });
 </script>
 
 
