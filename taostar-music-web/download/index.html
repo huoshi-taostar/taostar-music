@@ -433,6 +433,42 @@
     </script>
 
 
+<!-- 弹窗结构 -->
+<div id="musicPopup">
+  <div id="musicPopupContent">
+    <p>是否要开启背景音乐？</p>
+    <button id="yesBtn">是</button>
+    <button id="noBtn">否</button>
+  </div>
+</div>
+
+<!-- 背景音乐 -->
+<audio id="bgMusic" src="https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v0.01/Unchanged.Mind.m4a" loop></audio>
+
+<script>
+  const popup = document.getElementById('musicPopup');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const bgMusic = document.getElementById('bgMusic');
+
+  yesBtn.addEventListener('click', () => {
+    bgMusic.play(); // 开启音乐
+    popup.style.display = 'none'; // 隐藏弹窗
+  });
+
+  noBtn.addEventListener('click', () => {
+    popup.style.display = 'none'; // 隐藏弹窗
+  });
+
+  // 可选：用户点击遮罩外部也关闭弹窗
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+</script>
+
+
 </body>
 
 
