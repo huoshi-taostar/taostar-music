@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="下载 桃星音乐 欣赏纯音乐和动漫风景壁纸、助眠声音、自然音效与治愈体验，是一个让你放松心灵的音乐平台。">
+    <meta name="keywords" content="桃星音乐, 助眠音乐, Taostar music, huoshi">
+    <meta name="author" content="火狮桃星">
+    <title>桃星音乐 下载</title>
+    <link href="../../download/taostar-styles.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../../download/ico.png">
+    <!--
+
+火狮桃星 HUOSHI
+-->
+
+    <!-- License: PD. Made by Mary Akveo: https://maryakveo.com/ 
+                <svg fill="#000000" width="800px" height="800px" viewBox="0 0 24 24" id="music" data-name="Line Color"
+                    xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+                    <path id="secondary" d="M15,8H12v6"
+                        style="fill: none; stroke: rgb(44, 169, 188); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                    </path>
+                    <circle id="secondary-2" data-name="secondary" cx="10" cy="14" r="2"
+                        style="fill: none; stroke: rgb(44, 169, 188); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                    </circle>
+                    <circle id="primary" cx="12" cy="12" r="9"
+                        style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                    </circle>
+                </svg>-->
+
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <a href="#home" class="logo-container">
+            <div class="logo">
+                <?xml version="1.0" encoding="utf-8"?>
+                <img src="../../download/ico.png" class="fade-in appear"
+                    style="max-width: 90px; max-height: 43px; border-radius: 5px; border: solid 2px rgba(6, 184, 224, 0.405); box-shadow: 0 0 20px rgba(5, 204, 234, 0.345);">
+            </div>
+            <div class="logo-text">桃星ミュージック</div>
+        </a>
+
+        <nav class="main-menu" id="mainMenu">
+            <a href="#home" class="menu-item active">ホーム</a>
+            <a href="#about" class="menu-item">紹介・ダウンロード</a>
+            <a href="#contact" class="menu-item">お問い合わせ</a>
+            <a href="https://huoshi-taostar.github.io/" target="_blank" rel="noopener noreferrer"
+                class="menu-item external">火狮桃星</a>
+        </nav>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="coverflow-wrapper">
+            <div class="info">
+                <h2 id="current-title">桃星ミュージック</h2>
+                <p id="current-description">風景壁紙の鑑賞</p>
+            </div>
+
+            <div class="coverflow-container" tabindex="0">
+                <div class="coverflow" id="coverflow">
+                    <div class="coverflow-item" data-index="0">
+                        <div class="cover image-loading">
+                            <img src="../../download/images/taostar-music-1.png" alt="IMG 1 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="1">
+                        <div class="cover image-loading">
+                            <img src="../../download/images/taostar-music-2.png" alt="IMG 2 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="2">
+                        <div class="cover image-loading">
+                            <img src="../../download/images/taostar-music-3.png" alt="IMG 3 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="3">
+                        <div class="cover image-loading">
+                            <img src="../../download/images/taostar-music-4.png" alt="IMG 4 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="4">
+                        <div class="cover image-loading">
+                            <img src="../../download/images/taostar-music-5.png" alt="IMG 5 TaoStar" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="5">
+                        <div class="cover image-loading">
+                            <img src="../../download/images/taostar-music-6.png" alt="Starry Night" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                    <div class="coverflow-item" data-index="6">
+                        <div class="cover image-loading">
+                            <img src="../../download/images/taostar-music-7.png" alt="Waterfall" loading="lazy">
+                        </div>
+                        <div class="reflection"></div>
+                    </div>
+                </div>
+
+                <button class="nav-button prev" onclick="navigate(-1)">‹</button>
+                <button class="nav-button next" onclick="navigate(1)">›</button>
+
+                <div class="dots-container" id="dots"></div>
+
+                <button class="play-pause-button" id="playPauseBtn" onclick="toggleAutoplay()">
+                    <span class="play-icon">▶</span>
+                    <span class="pause-icon" style="display: none;">❚❚</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about-content">
+            <div class="about-header">
+                <h2>桃星ミュージック <br> Taostar Music </h2>
+                <p>癒しと安眠をサポートする音楽ソフト</p>
+            </div>
+
+            <div class="about-main">
+                <div class="about-visual">
+                    <div class="showcase-display">
+                        <div class="showcase-main">
+                            <div class="corner-decoration top-left"></div>
+                            <div class="corner-decoration bottom-right"></div>
+
+                            <div class="showcase-logo">
+                                <img src="../../download/ico.png" class="fade-in appear"
+                                    style="max-width: 90px; max-height: 90px; border-radius: 5px; border: solid 2px rgba(6, 184, 224, 0.704); box-shadow: 0 0 20px rgba(5, 203, 234, 0.684);">
+                            </div>
+
+                            <h3 class="showcase-title">桃星ミュージック</h3>
+
+                            <div class="showcase-badges">
+                                <a href="https://huoshi-taostar.github.io/taostar-music/taostar-music"
+                                    target="_blank" rel="noopener noreferrer" class="badge">桃星ミュージック</a>
+                                <a href="https://github.com/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">GitHub</a>
+                                <a href="https://huoshi-taostar.github.io/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">HUOSHI</a>
+                                <a href="https://react.dev/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">React</a>
+                                <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer"
+                                    class="badge">Node.js</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-info">
+                    <h3>癒しのアニメ風景壁紙</h3>
+                    <p>高品質なアニメ風景壁紙を収録し、さまざまなスタイルで多様な好みに対応します。</p>
+                    <p>厳選された高解像度の癒し系アニメ風景壁紙を収録し、美しい・爽やか・幻想的など多彩なスタイルで視覚的なリラックス体験を提供します。</p>
+
+                    <ul class="feature-list">
+                        <li>高品質な癒し系アニメ風景壁紙を多数収録</li>
+                        <li>さまざまなスタイルの壁紙切り替えに対応</li>
+                        <li>安眠サウンドと組み合わせたリラックス体験</li>
+                        <li>雨音・波の音・雨の中の傘・そよ風などの自然音を収録</li>
+                        <li>ゲームプレイ中でも桃星ミュージックを同時再生可能</li>
+                    </ul>
+
+                    <p>桃星ミュージック = 1.5 GB - ランチャーバージョン: v1.3.0.0 - コアバージョン: v6.4.0 </p>
+                    <b style="color: rgba(0, 214, 221, 0.793);"> Windows 10 / 11 のみ対応 </b> <br>
+
+                    <br><br>
+                    <a href="https://github.com/huoshi-taostar/taostar-music/releases/download/v6.4.0/TaostarMusicInstaller.exe"
+                        class="cta-button">
+                        桃星ミュージック インストーラー.exe をダウンロード
+                    </a>
+
+                    <br><br>
+
+                    <b style="color: rgba(255, 255, 255, 0.793);">
+                        PCに音楽がありませんか？ 音楽をダウンロードするには >> 
+                        <a href="#music-files-taostar" class="footer-dwn" style="text-decoration: none;"> 音楽ライブラリ</a>
+                    </b>
+                </div>
+            </div>
+
+            <br><br>
+
+            <center>
+                <h1 style="color: rgba(0, 234, 255, 0.858);"> 火狮桃星 HUOSHI Taostar</h1>
+            </center>
+
+            <br>
+
+            <div class="stats-section">
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">未知への探究心</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">⬆</div>
+                    <div class="stat-label">継続的な革新と突破</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">★</div>
+                    <div class="stat-label">研究と未知への挑戦</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">技術は無限の可能性を生み出す</div>
+                </div>
+            </div>
+
+            <br><br><br><br>
+
+            <p>ZIPファイルを手動ダウンロードして解凍（旧バージョン・非推奨）</p><br>>>
+            <a class="footer-dwn" id="launcher"
+                href="https://github.com/huoshi-taostar/taostar-music/releases/download/v1.2.60/Taoxing-Music-Launcher-New.zip"
+                title="download zip">
+                <b>ZIPファイルをダウンロード</b>
+            </a>
+
+            <br>
+            <hr id="music-files-taostar" style="border:none;height:2px;background:#8c8c8c9a;margin:8px 0;">
+            <br>
+
+            <p>bilibili</p><br>>>
+            <a class="footer-dwn" id="launcher" href="https://space.bilibili.com/3546720468207796">
+                <b>アクセス</b>
+            </a>
+
+            <br>
+            <hr style="border:none;height:2px;background:#8c8c8c9a;margin:8px 0;">
+            <br>
+
+            <p>桃星ミュージック 4K動画</p><br>>>
+            <a class="footer-dwn" id="launcher"
+                href="https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v1.1/taostar-music-vid-02.mp4">
+                <b>MP4動画をダウンロード</b>
+            </a>
+
+            <br>
+            <hr style="border:none;height:2px;background:#8c8c8c9a;margin:8px 0;">
+            <br>
+
+            <p style="color: rgba(0, 255, 251, 0.837);">
+                最新の音楽ライブラリはこちら。歌詞LRC・動画音楽・音楽ファイルを桃星ミュージックに追加できます。解凍するだけで使用可能です。
+            </p><br>>>
+            <a class="footer-dwn" id="launcher"
+                href="https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v12/Taostar-Music-Center-Ku.zip">
+                <b>音楽ライブラリをダウンロード</b>
+            </a>
+
+            <br>
+
+            <p style="color: rgba(0, 255, 251, 0.837);">
+                PCに音楽がありませんか？ 音楽ライブラリをダウンロードして桃星ミュージックに追加できます。20曲の音楽が含まれています。
+            </p><br>>>
+            <a class="footer-dwn" id="launcher"
+                href="https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v1.0.0-1/Taostar-Music-YIN-YUE-KU.zip">
+                <b>音楽ライブラリ（旧版）をダウンロード</b>
+            </a>
+
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+<section id="contact" class="section">
+    <div class="contact-content">
+
+        <div class="contact-header">
+            <h2>お問い合わせ</h2>
+            <p>ご意見やご提案がございましたら、お気軽にご連絡ください。すべてのフィードバックを大切にし、皆様との交流を心よりお待ちしております。</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info-section">
+
+                <h3>連絡先</h3>
+                <p>皆様からのご意見やフィードバックを歓迎しております。どのようなアイデア、提案、またはご質問でも丁寧に拝見し対応いたします。皆様の声は、サービスを継続的に改善し、より良い体験を提供するために非常に重要です。</p>
+
+                <div class="contact-details">
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-text">
+                            <h4>メール</h4>
+                            <p>huoshi.h.s.t@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg fill="#000000" viewBox="0 -32 576 576">
+                                <title>web</title>
+                                <path d="M288 32Q350 32 402 63 453 93 483 145 512 196 512 256 512 318 482 370 451 421 400 451 348 480 288 480 226 480 175 450 123 419 94 368 64 316 64 256 64 194 95 143 125 91 177 62 228 32 288 32Z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-text">
+                            <h4>公式サイト</h4>
+                            <p>
+                                <a href="https://huoshi-taostar.github.io/" style="text-decoration:none;color:rgb(205,205,205);">
+                                    https://huoshi-taostar.github.io/
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg viewBox="0 0 32 32">
+                                <line fill="none" stroke="#000000" stroke-width="2" x1="12" y1="16" x2="27" y2="16"/>
+                                <rect x="5" y="14" fill="none" stroke="#000000" stroke-width="2" width="4" height="4"/>
+                                <line fill="none" stroke="#000000" stroke-width="2" x1="12" y1="8" x2="27" y2="8"/>
+                                <rect x="5" y="6" fill="none" stroke="#000000" stroke-width="2" width="4" height="4"/>
+                                <line fill="none" stroke="#000000" stroke-width="2" x1="12" y1="24" x2="27" y2="24"/>
+                                <rect x="5" y="22" fill="none" stroke="#000000" stroke-width="2" width="4" height="4"/>
+                            </svg>
+                        </div>
+                        <div class="contact-text">
+                            <h4>更新履歴 (Change Log)</h4>
+                            <p>
+                                クリック >>> 
+                                <b>
+                                    <a href="https://huoshi-taostar.github.io/taostar-music/taostar-music-web/update-list.htm?huoshi-taostar-music+update-list-changelog~huoshitaostar~bnry=01101000+01110100+00101101+01101000+01110011"
+                                    style="text-decoration:none;color:rgb(157,157,157);">
+                                    更新履歴を見る
+                                    </a>
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="social-links">
+                    <h4>フォロー</h4>
+
+                    <div class="social-buttons">
+
+                        <a href="https://www.douyin.com/user/MS4wLjABAAAACijCHXWkdAit63xNKQJqV1v_SikFaSv361RJzIktzAX15pBKLOT65qZe7-A-wpHX?from_tab_name=main"
+                           class="social-btn" title="TikTok 抖音">
+
+                           <!-- TikTok SVG -->
+                                <svg width="512px" height="512px" viewBox="0 0 512 512" id="icons"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M412.19,118.66a109.27,109.27,0,0,1-9.45-5.5,132.87,132.87,0,0,1-24.27-20.62c-18.1-20.71-24.86-41.72-27.35-56.43h.1C349.14,23.9,350,16,350.13,16H267.69V334.78c0,4.28,0,8.51-.18,12.69,0,.52-.05,1-.08,1.56,0,.23,0,.47-.05.71,0,.06,0,.12,0,.18a70,70,0,0,1-35.22,55.56,68.8,68.8,0,0,1-34.11,9c-38.41,0-69.54-31.32-69.54-70s31.13-70,69.54-70a68.9,68.9,0,0,1,21.41,3.39l.1-83.94a153.14,153.14,0,0,0-118,34.52,161.79,161.79,0,0,0-35.3,43.53c-3.48,6-16.61,30.11-18.2,69.24-1,22.21,5.67,45.22,8.85,54.73v.2c2,5.6,9.75,24.71,22.38,40.82A167.53,167.53,0,0,0,115,470.66v-.2l.2.2C155.11,497.78,199.36,496,199.36,496c7.66-.31,33.32,0,62.46-13.81,32.32-15.31,50.72-38.12,50.72-38.12a158.46,158.46,0,0,0,27.64-45.93c7.46-19.61,9.95-43.13,9.95-52.53V176.49c1,.6,14.32,9.41,14.32,9.41s19.19,12.3,49.13,20.31c21.48,5.7,50.42,6.9,50.42,6.9V131.27C453.86,132.37,433.27,129.17,412.19,118.66Z" />
+                                </svg>
+
+                        </a>
+
+                        <a href="#" class="social-btn" title="Twitter">
+
+                            <!-- Twitter SVG -->
+                                <svg width="1200" height="1227" viewBox="0 0 1200 1227" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z"
+                                        fill="white" />
+                                </svg>
+
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-content">
+
+        <div class="footer-copyright">
+            © 2026 火狮桃星. All rights reserved. | Web template by 
+            <a href="https://templatemo.com" target="_blank" rel="noopener noreferrer">TemplateMo</a> |
+            本サイトのデザインおよびコードは 火狮桃星 によって再設計・改良されています。|
+            火狮チームおよび 火狮桃星 について詳しく知りたい場合は
+            <a href="https://huoshi-taostar.github.io/huoshi-taostar.html"
+               target="_blank"
+               rel="noopener noreferrer">こちら</a>
+        </div>
+
+        <div class="footer-links">
+            <a href="隐私政策Privacy Policy.pdf">プライバシーポリシー</a>
+        </div>
+
+    </div>
+</footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <span>↑</span>
+    </div>
+
+    <script src="scripts/taostar-scripts.js"></script>
+
+    <script>
+        const btn = document.getElementById('rewardBtn');
+        const overlay = document.getElementById('rewardOverlay');
+        const qrImg = overlay.querySelector('img');
+
+        btn.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            // 重置动画
+            qrImg.style.animation = 'none';
+            qrImg.offsetHeight; // 强制重绘
+            qrImg.style.animation = null;
+        });
+
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
+    </script>
+
+<!-- ポップアップ -->
+<div id="musicPopup">
+  <div id="musicPopupContent">
+    <p>バックグラウンド音楽を再生しますか？</p>
+    <button id="yesBtn">はい</button>
+    <button id="noBtn">いいえ</button>
+  </div>
+</div>
+
+<!-- 背景音乐 -->
+<audio id="bgMusic" src="https://github.com/huoshi-taostar/huoshi-taostar.github.io/releases/download/v0.01/Unchanged.Mind.m4a" loop></audio>
+
+<script>
+  const popup = document.getElementById('musicPopup');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const bgMusic = document.getElementById('bgMusic');
+
+  yesBtn.addEventListener('click', () => {
+    bgMusic.play(); // 开启音乐
+    popup.style.display = 'none'; // 隐藏弹窗
+  });
+
+  noBtn.addEventListener('click', () => {
+    popup.style.display = 'none'; // 隐藏弹窗
+  });
+
+  // 可选：用户点击遮罩外部也关闭弹窗
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      popup.style.display = 'none';
+    }
+  });
+</script>
+
+
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
