@@ -175,6 +175,55 @@ typeLoop();
             applyMobileBackground();
         }
     }
+
+
+    // 1. 禁止鼠标右键
+document.oncontextmenu = function() {
+    return false;
+};
+
+// 2. 禁止选择文本、复制、拖动、粘贴
+document.onselectstart = function() {
+    return false;
+};
+document.ondragstart = function() {
+    return false;
+};
+document.oncopy = function() {
+    return false;
+};
+document.onpaste = function() {
+    return false;
+};
+
+// 3. 禁止 F12、Ctrl+Shift+I、Ctrl+U (查看源码)、Ctrl+S (保存)
+document.onkeydown = function(e) {
+    var currKey = 0,
+        e = e || event;
+    currKey = e.keyCode || e.which || e.charCode;
+    
+    // F12 (123), Ctrl+Shift+I (73), Ctrl+U (85), Ctrl+S (83)
+    if (currKey == 123 || (e.ctrlKey && e.shiftKey && currKey == 73) || (e.ctrlKey && currKey == 85) || (e.ctrlKey && currKey == 83)) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            e.returnValue = false;
+        }
+    }
+};
+
+// 4. 禁止控制台打印（无限 debugger）
+!function() {
+    function c() {
+        try {
+            var a = (new Function("debugger;"));
+            a();
+        } catch (b) {}
+        setTimeout(c, 1000);
+    }
+    c();
+}();
+
     
     // 监听窗口大小变化，如果从桌面切换至移动模式（极少情况），可重新检测
     // 但为避免频繁操作，不做动态切换，页面加载时一次判定足够。
