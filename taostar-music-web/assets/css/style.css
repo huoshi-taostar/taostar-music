@@ -1,62 +1,69 @@
-
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    /* 后面内容显示的过渡动画 */
+}
+
+/* 给加载层预留一个类，确保它不受 body 隐藏影响 */
+#loading-overlay {
+    opacity: 1 !important;
 }
 
 main {
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #scene {
-	padding: 0;
-	margin: 0;
-	width: 115%;
-	height: 120vh;
-	overflow: hidden;
-	top: -5%;
-	left: -5%;
+    padding: 0;
+    margin: 0;
+    width: 115%;
+    height: 120vh;
+    overflow: hidden;
+    top: -5%;
+    left: -5%;
 }
 
 .layer {
-	width: 110%;
-	height: 120vh;
-	overflow: hidden;
+    width: 110%;
+    height: 120vh;
+    overflow: hidden;
 }
 
 .layer1,
 .layer2,
 .layer3,
 .layer4 {
-	background-size: cover;
-	background-position: center;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: -1%;
-	top: -1%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: -1%;
+    top: -1%;
 }
 
 /*1r: capa principal del fondo */
 .layer1 {
-	background-image: url(../img/wallpaper-landscape-anime.png);
+    background-image: url(../img/wallpaper-landscape-anime.png);
 }
 
 /*2n: capa paisajes secundarias*/
 .layer2 {
-	background-image: url(../img/cloud-wallpaper.png);
+    background-image: url(../img/cloud-wallpaper.png);
 }
 
 /*3r: capa objetos mas cercanos*/
 .layer3 {
-	background-image: url(../img/bird.png);
+    background-image: url(../img/bird.png);
 }
 
 /*4t: capa mas proxima.*/
 .layer4 {
-	background-image: url(../img/tree-taostar-music1.png);
+    background-image: url(../img/tree-taostar-music1.png);
 }
 
 
@@ -111,7 +118,8 @@ main {
     /* ⭐ 关键修复：高度必须放大 */
     height: 32px;
 
-    overflow: visible; /* ⭐ 不裁剪内容 */
+    overflow: visible;
+    /* ⭐ 不裁剪内容 */
 
     text-align: center;
     white-space: nowrap;
@@ -122,6 +130,7 @@ main {
 
     letter-spacing: 1px;
 }
+
 /* 文字本体 */
 #tx-typing-text {
     display: inline-block;
@@ -131,7 +140,8 @@ main {
 /* 光标 */
 #tx-typing-box .cursor {
     margin-left: 4px;
-    font-size: 22px;   /* 稍微比文字大一点 */
+    font-size: 22px;
+    /* 稍微比文字大一点 */
     font-weight: bold;
     color: #00eaffb1;
 
@@ -140,6 +150,15 @@ main {
 
 /* 闪烁动画 */
 @keyframes tx-blink {
-    0%, 50%, 100% { opacity: 1; }
-    25%, 75% { opacity: 0; }
+
+    0%,
+    50%,
+    100% {
+        opacity: 1;
+    }
+
+    25%,
+    75% {
+        opacity: 0;
+    }
 }
