@@ -11,6 +11,16 @@ body {
     opacity: 1 !important;
 }
 
+*, 
+*::before, 
+*::after,
+a:hover, 
+button:hover, 
+input:hover, 
+label:hover {
+    cursor: default !important;
+}
+
 main {
     width: 100%;
     height: 100vh;
