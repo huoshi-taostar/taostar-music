@@ -1,0 +1,145 @@
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+main {
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+}
+
+#scene {
+	padding: 0;
+	margin: 0;
+	width: 115%;
+	height: 120vh;
+	overflow: hidden;
+	top: -5%;
+	left: -5%;
+}
+
+.layer {
+	width: 110%;
+	height: 120vh;
+	overflow: hidden;
+}
+
+.layer1,
+.layer2,
+.layer3,
+.layer4 {
+	background-size: cover;
+	background-position: center;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: -1%;
+	top: -1%;
+}
+
+/*1r: capa principal del fondo */
+.layer1 {
+	background-image: url(../img/wallpaper-landscape-anime.png);
+}
+
+/*2n: capa paisajes secundarias*/
+.layer2 {
+	background-image: url(../img/cloud-wallpaper.png);
+}
+
+/*3r: capa objetos mas cercanos*/
+.layer3 {
+	background-image: url(../img/bird.png);
+}
+
+/*4t: capa mas proxima.*/
+.layer4 {
+	background-image: url(../img/tree-taostar-music1.png);
+}
+
+
+/* 按钮容器：永远浮在最上层 */
+#tx-entry-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 999999999;
+    isolation: isolate;
+
+    /* ⭐ 新增：垂直布局 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 按钮样式（青蓝色科技风） */
+#tx-entry-btn {
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #00eaffb1;
+    background: linear-gradient(135deg, #0000007f, #0000003a);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 悬停效果 */
+#tx-entry-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 247, 255, 0.568);
+}
+
+/* 点击效果 */
+#tx-entry-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===== 文字介绍框 ===== */
+#tx-typing-box {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #00eaffb1;
+
+    width: 260px;
+
+    /* ⭐ 关键修复：高度必须放大 */
+    height: 32px;
+
+    overflow: visible; /* ⭐ 不裁剪内容 */
+
+    text-align: center;
+    white-space: nowrap;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    letter-spacing: 1px;
+}
+/* 文字本体 */
+#tx-typing-text {
+    display: inline-block;
+}
+
+/* 光标 */
+/* 光标 */
+#tx-typing-box .cursor {
+    margin-left: 4px;
+    font-size: 22px;   /* 稍微比文字大一点 */
+    font-weight: bold;
+    color: #00eaffb1;
+
+    animation: tx-blink 1s infinite;
+}
+
+/* 闪烁动画 */
+@keyframes tx-blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
