@@ -165,6 +165,189 @@ $(document).ready(function () {
 
 </script>
 
+<script>
+	(() => {
+
+    const MUSIC_URL =
+        "https://raw.githubusercontent.com/huoshi-taostar/taostar-music/main/taostar-music-web/assets/audio/music-1.m4a";
+
+
+    // 避免重复注入
+    if (window.__taostar_music_loaded__) return;
+    window.__taostar_music_loaded__ = true;
+
+
+    // 创建播放器
+    const audio = new Audio(MUSIC_URL);
+
+    audio.loop = true;
+
+    audio.preload = "auto";
+
+    audio.volume = 1;
+
+
+    // 创建按钮
+    const btn =
+        document.createElement("button");
+
+    btn.innerHTML = "🎵";
+
+    Object.assign(
+        btn.style,
+        {
+            position: "fixed",
+
+            right: "20px",
+
+            bottom: "20px",
+
+            width: "60px",
+
+            height: "60px",
+
+            border: "none",
+
+            borderRadius: "50%",
+
+            fontSize: "28px",
+
+            cursor: "pointer",
+
+            background: "rgba(255,255,255,.15)",
+
+            color: "#fff",
+
+            backdropFilter: "blur(12px)",
+
+            zIndex: "999999",
+
+            transition: "0.25s",
+
+            boxShadow:
+                "0 0 25px rgba(255,255,255,.2)"
+        }
+    );
+
+    document.body.appendChild(btn);
+
+
+    // 旋转动画
+    const style =
+        document.createElement("style");
+
+    style.textContent = `
+.taostar-playing{
+animation:taostarRotate 4s linear infinite;
+}
+
+@keyframes taostarRotate{
+from{
+transform:rotate(0deg);
+}
+to{
+transform:rotate(360deg);
+}
+}
+`;
+
+    document.head.appendChild(style);
+
+
+
+    async function play() {
+
+        try {
+
+            await audio.play();
+
+            btn.innerHTML = "🎵";
+
+            btn.classList.add(
+                "taostar-playing"
+            );
+
+        }
+        catch { }
+
+    }
+
+
+
+    function stop() {
+
+        audio.pause();
+
+        btn.innerHTML = "🔇";
+
+        btn.classList.remove(
+            "taostar-playing"
+        );
+
+    }
+
+
+
+    // 自动播放
+    play();
+
+
+
+    // 浏览器拦截时等待首次交互
+    document.addEventListener(
+        "click",
+        () => {
+
+            if (
+                audio.paused
+            ) {
+
+                play();
+
+            }
+
+        },
+        {
+            once: true
+        }
+    );
+
+
+
+    // 切换播放状态
+    btn.onclick =
+        async (e) => {
+
+            e.stopPropagation();
+
+            if (
+                audio.paused
+            ) {
+
+                play();
+
+            }
+            else {
+
+                stop();
+
+            }
+
+        };
+
+
+
+    // 防止被暂停后结束
+    audio.addEventListener(
+        "ended",
+        () => {
+            play();
+        }
+    );
+
+})();
+</script>
+	
 </body>
 
 </html>
