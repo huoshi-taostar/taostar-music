@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://huoshi-taostar.github.io/taostar-music/taostar-music-web/sitemap.xml
