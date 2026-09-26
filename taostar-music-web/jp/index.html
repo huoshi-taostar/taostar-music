@@ -182,97 +182,337 @@
         })();
 
     </script>
-<script>
-	(() => {
+
+
+
+
+	<script>
+(() => {
 
     const MUSIC_URL =
         "https://github.com/huoshi-taostar/taostar-music/raw/refs/heads/main/taostar-music-web/assets/audio/Haru Haru(Instrumental).mp3";
 
 
-    // 避免重复注入
+    // =====================================================
+    // 防止重复注入
+    // =====================================================
+
     if (window.__taostar_music_loaded__) return;
     window.__taostar_music_loaded__ = true;
 
 
-    // 创建播放器
+    // =====================================================
+    // 音频
+    // =====================================================
+
     const audio = new Audio(MUSIC_URL);
 
     audio.loop = true;
-
     audio.preload = "auto";
 
-    audio.volume = 1;
+
+    // 正常播放音量
+    const MAX_VOLUME = 1;
+
+    audio.volume = MAX_VOLUME;
 
 
+    // =====================================================
+    // 状态
+    // =====================================================
+
+    // 用户是否主动暂停
+    let userPaused = false;
+
+    // 是否因为离开窗口/标签页而暂停
+    let hiddenPaused = false;
+
+    // 是否正在执行播放请求
+    let isPlayingRequest = false;
+
+    // 淡入淡出动画
+    let fadeTimer = null;
+
+
+    // =====================================================
     // 创建按钮
-    const btn =
-        document.createElement("button");
+    // =====================================================
+
+    const btn = document.createElement("button");
 
     btn.innerHTML = "🎵";
 
-    Object.assign(
-        btn.style,
-        {
-            position: "fixed",
-
-            right: "20px",
-
-            bottom: "20px",
-
-            width: "60px",
-
-            height: "60px",
-
-            border: "none",
-
-            borderRadius: "50%",
-
-            fontSize: "28px",
-
-            cursor: "pointer",
-
-            background: "rgba(255,255,255,.15)",
-
-            color: "#fff",
-
-            backdropFilter: "blur(12px)",
-
-            zIndex: "999999",
-
-            transition: "0.25s",
-
-            boxShadow:
-                "0 0 25px rgba(255,255,255,.2)"
-        }
-    );
+    Object.assign(btn.style, {
+        position: "fixed",
+        right: "20px",
+        bottom: "20px",
+        width: "60px",
+        height: "60px",
+        border: "none",
+        borderRadius: "50%",
+        fontSize: "28px",
+        cursor: "pointer",
+        background: "rgba(255,255,255,.15)",
+        color: "#fff",
+        backdropFilter: "blur(12px)",
+        zIndex: "999999",
+        transition: "0.25s",
+        boxShadow: "0 0 25px rgba(255,255,255,.2)"
+    });
 
     document.body.appendChild(btn);
 
 
+    // =====================================================
     // 旋转动画
-    const style =
-        document.createElement("style");
+    // =====================================================
+
+    const style = document.createElement("style");
 
     style.textContent = `
-.taostar-playing{
-animation:taostarRotate 4s linear infinite;
-}
+        .taostar-playing {
+            animation: taostarRotate 4s linear infinite;
+        }
 
-@keyframes taostarRotate{
-from{
-transform:rotate(0deg);
-}
-to{
-transform:rotate(360deg);
-}
-}
-`;
+        @keyframes taostarRotate {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+    `;
 
     document.head.appendChild(style);
 
 
+    // =====================================================
+    // 取消淡入淡出
+    // =====================================================
 
-    async function play() {
+    function cancelFade() {
+
+        if (fadeTimer !== null) {
+
+            cancelAnimationFrame(fadeTimer);
+
+            fadeTimer = null;
+
+        }
+
+    }
+
+
+    // =====================================================
+    // 平滑改变音量
+    // =====================================================
+
+    function fadeVolume(target, duration, callback) {
+
+        cancelFade();
+
+        const startVolume = audio.volume;
+
+        const startTime = performance.now();
+
+        target = Math.max(
+            0,
+            Math.min(1, target)
+        );
+
+
+        function animate(now) {
+
+            const elapsed =
+                now - startTime;
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
+
+
+            // 平滑 Ease In / Out
+            const eased =
+                progress < 0.5
+                    ? 2 * progress * progress
+                    : 1 -
+                      Math.pow(
+                          -2 * progress + 2,
+                          2
+                      ) / 2;
+
+
+            audio.volume =
+                startVolume +
+                (
+                    target -
+                    startVolume
+                ) * eased;
+
+
+            if (progress < 1) {
+
+                fadeTimer =
+                    requestAnimationFrame(
+                        animate
+                    );
+
+            }
+            else {
+
+                audio.volume = target;
+
+                fadeTimer = null;
+
+                if (callback) {
+                    callback();
+                }
+
+            }
+
+        }
+
+
+        fadeTimer =
+            requestAnimationFrame(
+                animate
+            );
+    }
+
+
+    // =====================================================
+    // 用户主动暂停
+    //
+    // 这里才使用淡出
+    // =====================================================
+
+    function userPause() {
+
+        // 先记录用户意图
+        // 防止淡出过程中其它 click 事件重新播放
+        userPaused = true;
+
+        btn.innerHTML = "🔇";
+
+        btn.classList.remove(
+            "taostar-playing"
+        );
+
+
+        fadeVolume(
+            0,
+            600,
+            () => {
+
+                audio.pause();
+
+                audio.volume = 0;
+
+            }
+        );
+    }
+
+
+    // =====================================================
+    // 离开窗口/标签页
+    //
+    // 重点：
+    // 这里绝对不能 fadeOut。
+    //
+    // 必须立即 pause。
+    // =====================================================
+
+    function pauseImmediatelyBecauseHidden() {
+
+        cancelFade();
+
+        hiddenPaused = true;
+
+        // 立即停止声音
+        audio.pause();
+
+        // 立即把音量归零
+        audio.volume = 0;
+
+        btn.innerHTML = "🔇";
+
+        btn.classList.remove(
+            "taostar-playing"
+        );
+    }
+
+
+    // =====================================================
+    // 回到窗口
+    // =====================================================
+
+    function resumeAfterVisible() {
+
+        // 用户主动暂停过
+        // 绝对不能自动恢复
+        if (userPaused) {
+            return;
+        }
+
+
+        if (
+            !document.hidden &&
+            hiddenPaused
+        ) {
+
+            hiddenPaused = false;
+
+            playMusic();
+
+        }
+
+    }
+
+
+    // =====================================================
+    // 播放
+    // =====================================================
+
+    async function playMusic() {
+
+        // 用户主动暂停
+        if (userPaused) {
+            return;
+        }
+
+
+        // 页面隐藏
+        if (document.hidden) {
+            return;
+        }
+
+
+        // 已经在播放
+        if (!audio.paused) {
+            return;
+        }
+
+
+        // 防止重复 play()
+        if (isPlayingRequest) {
+            return;
+        }
+
+
+        isPlayingRequest = true;
+
+        cancelFade();
+
+
+        // 从静音开始
+        audio.volume = 0;
+
 
         try {
 
@@ -284,81 +524,222 @@ transform:rotate(360deg);
                 "taostar-playing"
             );
 
+
+            // 播放成功后平滑恢复音量
+            fadeVolume(
+                MAX_VOLUME,
+                600
+            );
+
         }
-        catch { }
+        catch (error) {
 
+            // 浏览器禁止自动播放
+        }
+
+
+        isPlayingRequest = false;
     }
 
 
+    // =====================================================
+    // 页面可见性
+    //
+    // 这是主要判断
+    // =====================================================
 
-    function stop() {
-
-        audio.pause();
-
-        btn.innerHTML = "🔇";
-
-        btn.classList.remove(
-            "taostar-playing"
-        );
-
-    }
-
-
-
-    // 自动播放
-    play();
-
-
-
-    // 浏览器拦截时等待首次交互
     document.addEventListener(
-        "click",
+        "visibilitychange",
         () => {
 
-            if (
-                audio.paused
-            ) {
+            if (document.hidden) {
 
-                play();
-
-            }
-
-        },
-        {
-            once: true
-        }
-    );
-
-
-
-    // 切换播放状态
-    btn.onclick =
-        async (e) => {
-
-            e.stopPropagation();
-
-            if (
-                audio.paused
-            ) {
-
-                play();
+                // 离开页面：
+                // 立即停止
+                pauseImmediatelyBecauseHidden();
 
             }
             else {
 
-                stop();
+                // 回到页面
+                resumeAfterVisible();
 
             }
 
-        };
+        }
+    );
 
 
+    // =====================================================
+    // 浏览器窗口失去焦点
+    //
+    // 作为 visibilitychange 的补充
+    // =====================================================
 
-    // 防止被暂停后结束
+    window.addEventListener(
+        "blur",
+        () => {
+
+            // 如果已经隐藏，不需要重复处理
+            if (document.hidden) {
+                return;
+            }
+
+
+            // 窗口失去焦点
+            pauseImmediatelyBecauseHidden();
+
+        }
+    );
+
+
+    // =====================================================
+    // 浏览器窗口重新获得焦点
+    // =====================================================
+
+    window.addEventListener(
+        "focus",
+        () => {
+
+            resumeAfterVisible();
+
+        }
+    );
+
+
+    // =====================================================
+    // 初次自动播放
+    // =====================================================
+
+    playMusic();
+
+
+    // =====================================================
+    // 浏览器禁止自动播放
+    //
+    // 第一次用户交互后尝试播放
+    // =====================================================
+
+    function firstInteraction() {
+
+        if (
+            !userPaused &&
+            audio.paused &&
+            !document.hidden
+        ) {
+
+            playMusic();
+
+        }
+
+    }
+
+
+    document.addEventListener(
+        "pointerdown",
+        firstInteraction,
+        {
+            once: true,
+            passive: true
+        }
+    );
+
+
+    // =====================================================
+    // 音乐按钮
+    // =====================================================
+
+    btn.addEventListener(
+        "click",
+        async (e) => {
+
+            e.stopPropagation();
+
+
+            // 当前正在播放
+            if (!audio.paused) {
+
+                userPause();
+
+                return;
+
+            }
+
+
+            // 用户主动点击按钮恢复
+            userPaused = false;
+
+            hiddenPaused = false;
+
+
+            await playMusic();
+
+        }
+    );
+
+
+    // =====================================================
+    // 播放事件
+    // =====================================================
+
+    audio.addEventListener(
+        "play",
+        () => {
+
+            btn.innerHTML = "🎵";
+
+            btn.classList.add(
+                "taostar-playing"
+            );
+
+        }
+    );
+
+
+    // =====================================================
+    // 暂停事件
+    // =====================================================
+
+    audio.addEventListener(
+        "pause",
+        () => {
+
+            btn.classList.remove(
+                "taostar-playing"
+            );
+
+
+            if (
+                userPaused ||
+                document.hidden ||
+                hiddenPaused
+            ) {
+
+                btn.innerHTML = "🔇";
+
+            }
+
+        }
+    );
+
+
+    // =====================================================
+    // ended 保险
+    // =====================================================
+
     audio.addEventListener(
         "ended",
         () => {
-            play();
+
+            if (
+                !userPaused &&
+                !document.hidden
+            ) {
+
+                playMusic();
+
+            }
+
         }
     );
 
