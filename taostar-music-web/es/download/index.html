@@ -583,188 +583,608 @@
         });
     </script>
 
-    <script>
-        (() => {
-
-            const MUSIC_URL =
-                "https://github.com/huoshi-taostar/taostar-music/raw/refs/heads/main/taostar-music-web/assets/audio/Haru Haru(Instrumental).mp3";
 
 
-            // 避免重复注入
-            if (window.__taostar_music_loaded__) return;
-            window.__taostar_music_loaded__ = true;
+    
+<script>
+(() => {
+
+    const MUSIC_URL =
+        "https://github.com/huoshi-taostar/taostar-music/raw/refs/heads/main/taostar-music-web/assets/audio/Haru Haru(Instrumental).mp3";
 
 
-            // 创建播放器
-            const audio = new Audio(MUSIC_URL);
+    // =====================================================
+    // 防止重复注入
+    // =====================================================
 
-            audio.loop = true;
-
-            audio.preload = "auto";
-
-            audio.volume = 1;
+    if (window.__taostar_music_loaded__) return;
+    window.__taostar_music_loaded__ = true;
 
 
-            // 创建按钮
-            const btn =
-                document.createElement("button");
+    // =====================================================
+    // 创建播放器
+    // =====================================================
 
-            btn.innerHTML = "🎵";
+    const audio = new Audio(MUSIC_URL);
 
-            Object.assign(
-                btn.style,
-                {
-                    position: "fixed",
+    audio.loop = true;
+    audio.preload = "auto";
 
-                    left: "20px",
 
-                    bottom: "20px",
+    // 正常播放音量
+    const MAX_VOLUME = 1;
 
-                    width: "60px",
+    audio.volume = MAX_VOLUME;
 
-                    height: "60px",
 
-                    border: "none",
+    // =====================================================
+    // 状态
+    // =====================================================
 
-                    borderRadius: "50%",
+    // 用户是否主动暂停
+    let userPaused = false;
 
-                    fontSize: "28px",
+    // 是否因为切换窗口/标签页而暂停
+    let hiddenPaused = false;
 
-                    cursor: "pointer",
+    // 防止重复 play()
+    let isPlayingRequest = false;
 
-                    background: "rgba(255,255,255,.15)",
+    // 当前淡入/淡出动画
+    let fadeTimer = null;
 
-                    color: "#fff",
 
-                    backdropFilter: "blur(12px)",
+    // =====================================================
+    // 创建按钮
+    // =====================================================
 
-                    zIndex: "999999",
+    const btn = document.createElement("button");
 
-                    transition: "0.25s",
+    btn.innerHTML = "🎵";
 
-                    boxShadow:
-                        "0 0 25px rgba(255,255,255,.2)"
-                }
+    Object.assign(
+        btn.style,
+        {
+            position: "fixed",
+
+            left: "20px",
+
+            bottom: "20px",
+
+            width: "60px",
+
+            height: "60px",
+
+            border: "none",
+
+            borderRadius: "50%",
+
+            fontSize: "28px",
+
+            cursor: "pointer",
+
+            background: "rgba(255,255,255,.15)",
+
+            color: "#fff",
+
+            backdropFilter: "blur(12px)",
+
+            zIndex: "999999",
+
+            transition: "0.25s",
+
+            boxShadow:
+                "0 0 25px rgba(255,255,255,.2)"
+        }
+    );
+
+    document.body.appendChild(btn);
+
+
+    // =====================================================
+    // 旋转动画
+    // =====================================================
+
+    const style =
+        document.createElement("style");
+
+    style.textContent = `
+        .taostar-playing {
+            animation: taostarRotate 4s linear infinite;
+        }
+
+        @keyframes taostarRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    `;
+
+    document.head.appendChild(style);
+
+
+    // =====================================================
+    // 取消当前淡入/淡出
+    // =====================================================
+
+    function cancelFade() {
+
+        if (fadeTimer !== null) {
+
+            cancelAnimationFrame(fadeTimer);
+
+            fadeTimer = null;
+
+        }
+
+    }
+
+
+    // =====================================================
+    // 平滑改变音量
+    // =====================================================
+
+    function fadeVolume(
+        target,
+        duration,
+        callback
+    ) {
+
+        cancelFade();
+
+        const startVolume =
+            audio.volume;
+
+        const startTime =
+            performance.now();
+
+        target =
+            Math.max(
+                0,
+                Math.min(1, target)
             );
 
-            document.body.appendChild(btn);
+
+        function animate(now) {
+
+            const elapsed =
+                now - startTime;
+
+            const progress =
+                Math.min(
+                    elapsed / duration,
+                    1
+                );
 
 
-            // 旋转动画
-            const style =
-                document.createElement("style");
-
-            style.textContent = `
-.taostar-playing{
-animation:taostarRotate 4s linear infinite;
-}
-
-@keyframes taostarRotate{
-from{
-transform:rotate(0deg);
-}
-to{
-transform:rotate(360deg);
-}
-}
-`;
-
-            document.head.appendChild(style);
+            // Ease In / Out
+            const eased =
+                progress < 0.5
+                    ? 2 * progress * progress
+                    : 1 -
+                      Math.pow(
+                          -2 * progress + 2,
+                          2
+                      ) / 2;
 
 
+            audio.volume =
+                startVolume +
+                (
+                    target -
+                    startVolume
+                ) * eased;
 
-            async function play() {
 
-                try {
+            if (progress < 1) {
 
-                    await audio.play();
-
-                    btn.innerHTML = "🎵";
-
-                    btn.classList.add(
-                        "taostar-playing"
+                fadeTimer =
+                    requestAnimationFrame(
+                        animate
                     );
 
+            }
+            else {
+
+                audio.volume =
+                    target;
+
+                fadeTimer =
+                    null;
+
+                if (callback) {
+
+                    callback();
+
                 }
-                catch { }
 
             }
 
+        }
 
 
-            function stop() {
+        fadeTimer =
+            requestAnimationFrame(
+                animate
+            );
+    }
+
+
+    // =====================================================
+    // 用户主动暂停
+    //
+    // 只有用户点击按钮暂停时才使用淡出
+    // =====================================================
+
+    function userPause() {
+
+        // 先记录用户意图
+        // 防止淡出过程中点击页面其它地方重新播放
+        userPaused = true;
+
+
+        btn.innerHTML = "🔇";
+
+        btn.classList.remove(
+            "taostar-playing"
+        );
+
+
+        // 平滑淡出
+        fadeVolume(
+            0,
+            600,
+            () => {
 
                 audio.pause();
 
-                btn.innerHTML = "🔇";
+                audio.volume = 0;
 
-                btn.classList.remove(
-                    "taostar-playing"
-                );
+            }
+        );
+    }
+
+
+    // =====================================================
+    // 因离开窗口/标签页暂停
+    //
+    // 注意：
+    // 这里不淡出，必须立即停止
+    // =====================================================
+
+    function pauseImmediatelyBecauseHidden() {
+
+        cancelFade();
+
+        hiddenPaused = true;
+
+
+        // 立即停止音乐
+        audio.pause();
+
+
+        // 立即归零
+        audio.volume = 0;
+
+
+        btn.innerHTML = "🔇";
+
+        btn.classList.remove(
+            "taostar-playing"
+        );
+    }
+
+
+    // =====================================================
+    // 回到页面
+    // =====================================================
+
+    function resumeAfterVisible() {
+
+        // 用户主动暂停过
+        // 不允许自动恢复
+        if (userPaused) {
+
+            return;
+
+        }
+
+
+        if (
+            !document.hidden &&
+            hiddenPaused
+        ) {
+
+            hiddenPaused = false;
+
+            play();
+
+        }
+
+    }
+
+
+    // =====================================================
+    // 播放
+    // =====================================================
+
+    async function play() {
+
+        // 用户主动暂停
+        if (userPaused) {
+
+            return;
+
+        }
+
+
+        // 页面隐藏
+        if (document.hidden) {
+
+            return;
+
+        }
+
+
+        // 已经播放
+        if (!audio.paused) {
+
+            return;
+
+        }
+
+
+        // 防止重复请求
+        if (isPlayingRequest) {
+
+            return;
+
+        }
+
+
+        isPlayingRequest = true;
+
+        cancelFade();
+
+
+        // 从 0 开始淡入
+        audio.volume = 0;
+
+
+        try {
+
+            await audio.play();
+
+
+            btn.innerHTML = "🎵";
+
+            btn.classList.add(
+                "taostar-playing"
+            );
+
+
+            // 平滑恢复音量
+            fadeVolume(
+                MAX_VOLUME,
+                600
+            );
+
+        }
+        catch (error) {
+
+            // 浏览器禁止自动播放
+        }
+
+
+        isPlayingRequest = false;
+    }
+
+
+    // =====================================================
+    // 页面可见性
+    //
+    // 这是主要判断
+    // =====================================================
+
+    document.addEventListener(
+        "visibilitychange",
+        () => {
+
+            if (document.hidden) {
+
+                pauseImmediatelyBecauseHidden();
+
+            }
+            else {
+
+                resumeAfterVisible();
+
+            }
+
+        }
+    );
+
+
+    // =====================================================
+    // 浏览器窗口失去焦点
+    //
+    // 作为 visibilitychange 的补充
+    // =====================================================
+
+    window.addEventListener(
+        "blur",
+        () => {
+
+            // 如果已经 hidden
+            // visibilitychange 已经处理
+            if (document.hidden) {
+
+                return;
 
             }
 
 
+            // 窗口失去焦点
+            pauseImmediatelyBecauseHidden();
 
-            // 自动播放
+        }
+    );
+
+
+    // =====================================================
+    // 浏览器窗口重新获得焦点
+    // =====================================================
+
+    window.addEventListener(
+        "focus",
+        () => {
+
+            resumeAfterVisible();
+
+        }
+    );
+
+
+    // =====================================================
+    // 自动播放
+    // =====================================================
+
+    play();
+
+
+    // =====================================================
+    // 浏览器拦截自动播放
+    //
+    // 等用户第一次操作
+    // =====================================================
+
+    function firstInteraction() {
+
+        if (
+            !userPaused &&
+            audio.paused &&
+            !document.hidden
+        ) {
+
             play();
 
+        }
+
+    }
 
 
-            // 浏览器拦截时等待首次交互
-            document.addEventListener(
-                "click",
-                () => {
+    document.addEventListener(
+        "pointerdown",
+        firstInteraction,
+        {
+            once: true,
+            passive: true
+        }
+    );
 
-                    if (
-                        audio.paused
-                    ) {
 
-                        play();
+    // =====================================================
+    // 切换播放状态
+    // =====================================================
 
-                    }
+    btn.onclick =
+        async (e) => {
 
-                },
-                {
-                    once: true
-                }
+            e.stopPropagation();
+
+
+            // 当前正在播放
+            if (!audio.paused) {
+
+                userPause();
+
+                return;
+
+            }
+
+
+            // 用户主动点击恢复
+            userPaused = false;
+
+            hiddenPaused = false;
+
+
+            await play();
+
+        };
+
+
+    // =====================================================
+    // 播放事件
+    // =====================================================
+
+    audio.addEventListener(
+        "play",
+        () => {
+
+            btn.innerHTML = "🎵";
+
+            btn.classList.add(
+                "taostar-playing"
+            );
+
+        }
+    );
+
+
+    // =====================================================
+    // 暂停事件
+    // =====================================================
+
+    audio.addEventListener(
+        "pause",
+        () => {
+
+            btn.classList.remove(
+                "taostar-playing"
             );
 
 
+            if (
+                userPaused ||
+                hiddenPaused ||
+                document.hidden
+            ) {
 
-            // 切换播放状态
-            btn.onclick =
-                async (e) => {
+                btn.innerHTML = "🔇";
 
-                    e.stopPropagation();
+            }
 
-                    if (
-                        audio.paused
-                    ) {
-
-                        play();
-
-                    }
-                    else {
-
-                        stop();
-
-                    }
-
-                };
+        }
+    );
 
 
+    // =====================================================
+    // ended 保险
+    // =====================================================
 
-            // 防止被暂停后结束
-            audio.addEventListener(
-                "ended",
-                () => {
-                    play();
-                }
-            );
+    audio.addEventListener(
+        "ended",
+        () => {
 
-        })();
-    </script>
+            if (
+                !userPaused &&
+                !document.hidden
+            ) {
+
+                play();
+
+            }
+
+        }
+    );
+
+})();
+</script>
 
 
 </body>
