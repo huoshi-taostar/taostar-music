@@ -514,7 +514,7 @@
             audio.loop = false;
             audio.preload = "auto";
 
-            const MAX_VOLUME = 0.1;
+            const MAX_VOLUME = 0.3;
 
             audio.volume = MAX_VOLUME;
 
@@ -1421,7 +1421,39 @@
             );
 
         })();
+
+
+
+        
     </script>
+
+<script> 
+    // 禁止页面上下和左右滚动
+document.documentElement.style.overflow = 'hidden';
+document.body.style.overflow = 'hidden';
+
+// 隐藏滚动条
+document.documentElement.style.scrollbarWidth = 'none'; // Firefox
+document.body.style.scrollbarWidth = 'none';
+
+// Chrome、Edge、Safari
+const style = document.createElement('style');
+style.innerHTML = `
+    ::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    html, body {
+        overflow: hidden !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+`;
+document.head.appendChild(style);
+</script>
+
 
 
 
